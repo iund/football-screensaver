@@ -13,6 +13,7 @@ A simulated football match shown as a live TV broadcast. `mockup.html` is the re
 - Owner dribbles toward goal avoiding opponents; decides every 0.4–1.6 s: shoot (<28 m), pass (forwardness + space + distance score; lofted if long or lane blocked) or keep dribbling.
 - Shot outcome fixed at the kick (goal / save / wide-over); keeper reacts accordingly.
 - Nearest defender presses, second covers; tackles and interceptions are probabilistic.
+- Goal cutscene: 3.5 s live celebration with `GOAL` lower third, then a `REPLAY` wipe, slow-motion (0.4×) closeup replay of the last 3 s before the goal + 0.7 s after (8 s ring buffer of player/ball state, interpolated), wipe back to live, kickoff. Replay camera: `C = (0.8·cam.x, −50, 11)`, zoom 1.7, `LIVE` tag becomes `REPLAY`.
 - Restarts: kickoff, throw-in, goal kick, corner. Match clock is real time: 2 × 45 min + added time, HT/FT card, then a new fixture.
 
 ## macOS port (rules from `iund/spreadpoint-clock-screensaver`)
@@ -22,6 +23,7 @@ A simulated football match shown as a live TV broadcast. `mockup.html` is the re
 - Players/ref/ball: sprite `CALayer`s; per frame set `position`, `bounds`, `contents` (pre-rendered frame `CGImage`), `zPosition` = −depth, `transform` scaleX −1 to mirror. Shadows: pre-rendered ellipse images on their own layers.
 - Goals: one `CAShapeLayer` per goal, path rebuilt per frame (≈40 segments).
 - Wrap each frame in `CATransaction.setDisableActions(true)`. Never write a whole `position` when only one component should change.
+- Replay: record a fixed-size ring buffer (`Float32Array` per step in the mockup → flat `[Float]` in Swift); playback just feeds interpolated snapshots into the same layer update path. Wipe = one layer with a `CABasicAnimation` on `position.x`; cut at its midpoint.
 - HUD: layers/`CATextLayer`, updated only when text changes (≤ 1 Hz); goal/card slide via explicit `CABasicAnimation`.
 - Only the newest instance animates (`generation` / `liveInstances` gating); `adoptWindowSizeIfNeeded`; fresh `configureSheet` window per request; `cacheDisplay(in:to:)` returns a CPU-rendered still; lifecycle to the unified log.
 - Keep the score bug below the menu-bar/notch band (`max(safeAreaInsets.top, NSStatusBar.system.thickness)`) on full-screen instances.

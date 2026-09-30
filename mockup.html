@@ -24,6 +24,11 @@ html,body{margin:0;height:100%;background:#000;overflow:hidden}
 #bug .a.on{display:flex}
 #live{position:absolute;right:3vw;top:max(3.5vh,12px);height:1.9em;display:flex;align-items:center;gap:.4em;padding:0 .6em;background:rgba(10,18,38,.75);font-weight:700}
 #live i{width:.55em;height:.55em;border-radius:50%;background:#e11d48;animation:blink 1.6s infinite}
+#live.rp{background:#d61f45}
+#live.rp i{animation:none;background:#fff}
+#wipe{position:absolute;top:-10%;bottom:-10%;left:-30%;width:160%;transform:translateX(-120%) skewX(-12deg);background:linear-gradient(90deg,#d61f45 0 6%,#0a1226 6% 94%,#d61f45 94%);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:clamp(32px,7vw,110px);letter-spacing:.25em}
+#wipe.go{animation:wipe .6s cubic-bezier(.6,0,.4,1)}
+@keyframes wipe{0%{transform:translateX(-120%) skewX(-12deg)}40%,60%{transform:translateX(0) skewX(-12deg)}100%{transform:translateX(120%) skewX(-12deg)}}
 @keyframes blink{50%{opacity:.25}}
 #lower{position:absolute;left:3vw;bottom:9vh;display:flex;max-width:94vw;transform:translateX(-130%);transition:transform .55s cubic-bezier(.2,.8,.2,1);box-shadow:0 .2em .8em rgba(0,0,0,.5)}
 #lower.on{transform:none}
@@ -50,8 +55,9 @@ html,body{margin:0;height:100%;background:#000;overflow:hidden}
     <div class="c" id="clk"></div>
     <div class="a" id="add"></div>
   </div>
-  <div id="live"><i></i>LIVE</div>
+  <div id="live"><i></i><span id="lv">LIVE</span></div>
   <div id="lower"><div class="tag">GOAL</div><div class="txt"><div id="l1"></div><div id="l2"></div></div></div>
+  <div id="wipe">REPLAY</div>
   <div id="card"><div class="h" id="ch"></div><div class="r"><i id="ck0"></i><span id="cn0"></span><b id="cs0"></b></div><div class="r"><i id="ck1"></i><span id="cn1"></span><b id="cs1"></b></div></div>
 </div>
 <script>
@@ -82,7 +88,7 @@ const NUMS=[1,2,5,6,3,7,8,4,11,9,10];
 const FORM=[[-49,0],[-33,-22],[-36,-8],[-36,8],[-33,22],[-15,-23],[-18,-7],[-18,7],[-15,23],[-3,-7],[-5,8]];
 
 // ---------- sprites: 8 run frames + 1 idle per kit/look, drawn facing right ----------
-const SW=24,SH=48,SS=2,SKIN=['#f1c7a5','#c68a5d','#7a4a2c'],HAIR=['#2a1a10','#111111','#b88a4a'];
+const SW=24,SH=48,SS=3,SKIN=['#f1c7a5','#c68a5d','#7a4a2c'],HAIR=['#2a1a10','#111111','#b88a4a'];
 function figure(x,k,skin,hair,fr){
   const run=fr<8,ph=fr/8*TAU;
   x.lineCap='round';
@@ -175,7 +181,7 @@ addEventListener('resize',resize);
 const cam={x:0,y:0,z:1};
 function basis(C,T){const f=nrm(sub(T,C)),r=nrm(cross(f,[0,0,1]));return{C,f,r,u:cross(r,f)}}
 function view(){
-  const C=[cam.x*.55,-60,25];let T=[cam.x,cam.y+5-9*clamp(VH/VW-.7,0,1),0],b=basis(C,T);
+  const rp=M.phase==='replay',C=rp?[cam.x*.8,-50,11]:[cam.x*.55,-60,25];let T=[cam.x,rp?cam.y:cam.y+5-9*clamp(VH/VW-.7,0,1),0],b=basis(C,T);
   // keep every plane corner well in front of the lens (Core Animation / CSS both misbehave at w<=0)
   const ok=b=>PLANES.every(p=>p.corners.every(q=>dot(sub(q,C),b.f)>4));
   for(let lo=0,hi=1,i=0;!ok(b)&&i<12;i++){const m=(lo+hi)/2;hi=m;b=basis(C,[C[0]+(T[0]-C[0])*m,T[1],0]);if(ok(b))break}
@@ -201,6 +207,7 @@ function newMatch(first){
      ball:{x:0,y:0,z:0,vx:0,vy:0,vz:0,owner:null,last:0,kicker:null,kickT:0,shot:null,recv:null},
      ref:{x:-6,y:-9,vx:0,vy:0,ph:0,face:1,kit:4,look:RI(6),i:-1,t:-1,stun:0}};
   M.all=[...M.teams[0].players,...M.teams[1].players];
+  M.rec={buf:Array.from({length:REC},()=>new Float32Array(23*5+3)),n:0};
   buildWorld(ta.kit[0],tb.kit[0]);
   hud(true);
   if(first){M.time=23*60+RI(50);M.teams[0].score=1;const o=M.teams[0].players[7];o.x=-4;o.y=6;gain(o)}
@@ -309,7 +316,7 @@ function outOfPlay(){
   if(b.last===def||saved)restart('corner',1-def,s*52.5,sgn(b.y)*34);else restart('goalkick',def,s*47,sgn(b.y)*5);
 }
 function goal(t,s){
-  const b=B();T(t).score++;M.phase='goal';M.gt=6.5;M.gteam=t;M.scorer=b.kicker;M.celeb=[s*46,sgn(b.y)*27];b.shot=null;
+  const b=B();T(t).score++;M.phase='goal';M.gt=3.5;M.gi=M.rec.n;M.gteam=t;M.scorer=b.kicker;M.celeb=[s*46,sgn(b.y)*27];b.shot=null;
   const og=b.kicker.t!==t,min=Math.floor(M.time/60)+1,hEnd=M.half*45;
   $('l1').textContent=`${og?'':'#'+b.kicker.num+' '}${b.kicker.name.toUpperCase()}${og?' (OG)':''}  ${min>hEnd?hEnd+'+'+(min-hEnd):min}'`;
   $('l2').textContent=`${T(0).name.toUpperCase()} ${T(0).score} – ${T(1).score} ${T(1).name.toUpperCase()}`;
@@ -326,7 +333,26 @@ function endBreak(){
   if(M.half===2)return newMatch();
   M.half=2;M.time=45*60;M.added=2+RI(4);for(const t of M.teams)t.dir*=-1;restart('kickoff',1,0,0);
 }
+// ---------- goal replay: ring buffer of the last 8 s, played back at 0.4x with a closeup camera ----------
+const REC=480,F5=['x','y','vx','vy','ph'],ACT=()=>[...M.all,M.ref];
+function snap(s){let k=0;for(const p of ACT())for(const f of F5)s[k++]=p[f];const b=B();s[k++]=b.x;s[k++]=b.y;s[k]=b.z;return s}
+function load(a,c,t){let k=0;const l=()=>{const v=a[k]+(c[k]-a[k])*t;k++;return v};for(const p of ACT())for(const f of F5)p[f]=l();const b=B();b.x=l();b.y=l();b.z=l()}
+function wipe(){const w=$('wipe');w.classList.remove('go');void w.offsetWidth;w.classList.add('go')}
+function tvTag(rp){$('live').classList.toggle('rp',rp);$('lv').textContent=rp?'REPLAY':'LIVE'}
+function startReplay(){
+  const r=M.rec,st=Math.max(r.n-REC+1,M.gi-180),bf=r.buf[st%REC];
+  M.live=snap(new Float32Array(bf.length));M.rp={i:st,end:Math.min(r.n-1,M.gi+42),w:0};M.phase='replay';
+  $('lower').classList.remove('on');tvTag(true);load(bf,bf,0);Object.assign(B(),{vx:0,vy:0});M.snapCam=1;
+}
+function replayStep(dt){
+  M.time+=dt;M.clock+=dt;const r=M.rp;r.i+=dt*60*.4;
+  if(!r.w&&r.i>=r.end-7){r.w=1;wipe()}
+  if(r.i>=r.end){load(M.live,M.live,0);tvTag(false);return restart('kickoff',1-M.gteam,0,0)}
+  const i=Math.floor(r.i),RB=M.rec.buf;load(RB[i%REC],RB[(i+1)%REC],r.i-i);
+}
 function step(dt){
+  if(M.phase==='replay')return replayStep(dt);
+  snap(M.rec.buf[M.rec.n++%REC]);
   const b=B(),o=b.owner;M.clock+=dt;
   if(M.phase!=='break')M.time+=dt;
   if((M.phase==='play'||M.phase==='restart')&&M.time>=(M.half*45+M.added)*60)brk();
@@ -368,7 +394,7 @@ function step(dt){
       o.stun=.8;if(rnd()<.35){b.owner=null;b.last=q.t;b.kicker=q;b.kickT=.3;b.vx=R(-5,5);b.vy=R(-5,5)}else gain(q);break}
     if(b.owner){b.owner.decide-=dt;if(b.owner.decide<=0)decide(b.owner)}
     if(M.phase==='play')outOfPlay();
-  }else if(M.phase==='goal'){M.gt-=dt;if(M.gt<=0){$('lower').classList.remove('on');restart('kickoff',1-M.gteam,0,0)}}
+  }else if(M.phase==='goal'){const g0=M.gt;M.gt-=dt;if(g0>.3&&M.gt<=.3)wipe();if(M.gt<=0)startReplay()}
   else if(M.phase==='break'){M.bt-=dt;if(M.bt<=0)endBreak()}
 }
 
@@ -385,12 +411,13 @@ function hud(force){
 
 // ---------- per-frame render ----------
 function render(dt){
-  const b=B(),focus=M.phase==='goal'?M.scorer:M.phase==='break'?{x:0,y:0,vx:0}:b;
-  const tx=clamp(focus.x+(focus.vx||0)*.6,-41,41),ty=clamp(focus.y*.55,-16,16),k=1-Math.exp(-dt*1.8);
+  const b=B(),rp=M.phase==='replay',focus=M.phase==='goal'?M.scorer:M.phase==='break'?{x:0,y:0,vx:0}:b;
+  const tx=clamp(focus.x+(focus.vx||0)*.6,rp?-50:-41,rp?50:41),ty=clamp(focus.y*(rp?.8:.55),-16,16),k=M.snapCam?1:1-Math.exp(-dt*(rp?6:1.8));
+  if(M.snapCam){M.snapCam=0;cam.z=1.7}
   cam.x+=(tx-cam.x)*k;cam.y+=(ty-cam.y)*k*.6;
-  cam.z+=((M.phase==='break'?.8:b.z>3||hyp(b.vx,b.vy)>16?.9:M.phase==='goal'?1.12:1)-cam.z)*(1-Math.exp(-dt*.9));
+  cam.z+=((rp?1.7:M.phase==='break'?.8:b.z>3||hyp(b.vx,b.vy)>16?.9:M.phase==='goal'?1.12:1)-cam.z)*(1-Math.exp(-dt*.9));
   view();
-  const crowdUp=M.phase==='goal'&&(M.clock*4|0)&1;
+  const crowdUp=(M.phase==='goal'||rp&&M.rp.i>=M.gi)&&(M.clock*4|0)&1;
   for(const p of PLANES){const m=css(p);p.els.forEach((e,i)=>{e.style.transform=m;e.style.visibility=p.els.length>1&&i!==+crowdUp?'hidden':'visible'})}
   g.setTransform(DPR,0,0,DPR,0,0);g.clearRect(0,0,VW,VH);
   const items=[];
