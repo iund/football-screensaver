@@ -47,6 +47,19 @@ jobs:
           mkdir -p dist
           ditto -c -k --keepParent "$SAVER" dist/Football.saver.zip
 
+      - name: Render layer tree headless (snapshot check)
+        run: |
+          set -euo pipefail
+          mkdir -p dist/snapshots
+          swiftc -parse-as-library -O macos/Saver/Match.swift macos/Saver/Art.swift macos/Saver/Broadcast.swift macos/Saver/HUD.swift \
+            macos/Tools/Snapshot.swift -o build/snapshot
+          build/snapshot dist/snapshots
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: snapshots-${{ github.sha }}
+          path: dist/snapshots
+
       - uses: actions/upload-artifact@v4
         with:
           name: Football-saver-${{ github.sha }}

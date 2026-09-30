@@ -296,6 +296,19 @@ final class Broadcast {
         f.path = path([[(x0, -3.66, 0), (x0, -3.66, 2.44), (x0, 3.66, 2.44), (x0, 3.66, 0)]]); f.lineWidth = max(0.6, F * 0.12 / d); f.zPosition = -d / 1000
     }
 
+    var ready: Bool { art != nil }
+
+    /// Layer-tree state for macos/Tools/Snapshot.swift.
+    func debugDump() -> String {
+        var s = "phase=\(match.phase) W=\(W) H=\(H) art=\(art != nil)\n"
+        for l in root.sublayers ?? [] { s += "root.sub \(l.name ?? "-") frame=\(l.frame) hidden=\(l.isHidden) subs=\(l.sublayers?.count ?? 0)\n" }
+        for (i, a) in sprites.prefix(4).enumerated() {
+            s += "sprite\(i) hidden=\(a.isHidden) frame=\(a.frame) contents=\(a.contents != nil) z=\(a.zPosition) super=\(a.superlayer?.name ?? "nil")\n"
+        }
+        s += "ball hidden=\(ballLayer.isHidden) frame=\(ballLayer.frame) contents=\(ballLayer.contents != nil)\n"
+        return s
+    }
+
     // MARK: - Still (cacheDisplay / wallpaper snapshot)
 
     /// A CPU approximation of the current frame: flat-shaded stands and pitch stripes, lines, sprites.
