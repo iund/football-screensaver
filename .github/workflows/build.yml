@@ -55,6 +55,16 @@ jobs:
             macos/Tools/Snapshot.swift -o build/snapshot
           build/snapshot dist/snapshots
 
+      - name: Publish snapshots to the ci-snapshots branch
+        if: github.ref != 'refs/heads/main'
+        run: |
+          set -euo pipefail
+          cd dist/snapshots
+          git init -q && git checkout -q -b ci-snapshots
+          git -c user.name=ci -c user.email=ci@users.noreply.github.com commit -qm "Snapshots for ${{ github.sha }}" --allow-empty
+          git add -A && git -c user.name=ci -c user.email=ci@users.noreply.github.com commit -qm "Snapshots for ${{ github.sha }}"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" ci-snapshots
+
       - uses: actions/upload-artifact@v4
         with:
           name: snapshots-${{ github.sha }}
