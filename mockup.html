@@ -12,7 +12,6 @@ html,body{margin:0;height:100%;background:#000;overflow:hidden}
 #stage{position:fixed;inset:0;overflow:hidden;background:linear-gradient(#04060c,#0a0f1c 45%,#0b1410)}
 .plane{position:absolute;left:0;top:0;transform-origin:0 0}
 #fx{position:absolute;inset:0;width:100%;height:100%}
-#vig{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,transparent 55%,rgba(0,0,0,.38))}
 #hud{position:fixed;inset:0;pointer-events:none;font:600 clamp(13px,1.45vw,24px) 'Barlow Condensed',sans-serif;color:#fff;letter-spacing:.03em}
 #bug{position:absolute;left:3vw;top:max(3.5vh,12px);display:flex;height:1.9em;box-shadow:0 .2em .6em rgba(0,0,0,.45)}
 #bug>div{display:flex;align-items:center;padding:0 .55em;background:rgba(10,18,38,.92)}
@@ -46,7 +45,7 @@ html,body{margin:0;height:100%;background:#000;overflow:hidden}
 </style>
 </head>
 <body>
-<div id="stage"><canvas id="fx"></canvas><div id="vig"></div></div>
+<div id="stage"><canvas id="fx"></canvas></div>
 <div id="hud">
   <div id="bug">
     <div class="t"><i id="k0"></i><b id="n0"></b></div>
@@ -131,7 +130,8 @@ const PPM=14,X0=-62,X1=62,Y0=-40,Y1=40;
 function pitchTex(ppm,x0,x1,y0,y1){
   const c=mk((x1-x0)*ppm,(y1-y0)*ppm),x=c.getContext('2d');
   x.setTransform(ppm,0,0,-ppm,-x0*ppm,y1*ppm);
-  for(let i=-2;i<22;i++){x.fillStyle=i&1?'#3d8a34':'#47983d';x.fillRect(-52.5+i*5.25,Y0,5.25,Y1-Y0)}
+  x.fillStyle='#47983d';x.fillRect(X0,Y0,X1-X0,Y1-Y0);
+  for(let i=-2;i<22;i++){x.fillStyle=i&1?'#44943a':'#47983d';x.fillRect(-52.5+i*5.25,Y0,5.25,Y1-Y0)}
   x.fillStyle='rgba(0,0,0,.13)';x.fillRect(X0,Y0,X1-X0,-34-Y0);x.fillRect(X0,34,X1-X0,Y1-34);x.fillRect(X0,-34,-52.5-X0,68);x.fillRect(52.5,-34,X1-52.5,68);
   for(let i=(x1-x0)*(y1-y0)*6;i>0;i--){x.fillStyle=rnd()<.5?'rgba(0,0,0,.07)':'rgba(255,255,255,.05)';x.fillRect(R(x0,x1),R(y0,y1),.12,.12)}
   x.strokeStyle='rgba(255,255,255,.93)';x.lineWidth=.12;x.fillStyle='#fff';
@@ -148,7 +148,7 @@ function pitchTex(ppm,x0,x1,y0,y1){
 function crowdTex(wm,hm,kits,jump){
   const P=8,c=mk(wm*P,hm*P),x=c.getContext('2d'),rh=.85,cols=['#d9d9d9','#3b3f4a','#23395d','#555555','#c9b27c','#2d2d2d','#6b2020','#1f3b2a'];
   for(let r=0;r*rh<hm;r++){
-    const y=r*rh*P;x.fillStyle=r&1?'#1b1e27':'#16181f';x.fillRect(0,y,c.width,rh*P);
+    const y=r*rh*P;x.fillStyle=r&1?'#2b2f39':'#262a33';x.fillRect(0,y,c.width,rh*P);
     for(let s=0;s*.55<wm;s++){if(rnd()<.09)continue;
       const px=(s*.55+R(-.08,.08))*P,up=jump&&rnd()<.6?.18*P:0,v=rnd();
       x.fillStyle=v<.3?kits[0]:v<.45?kits[1]:pick(cols);x.fillRect(px-.2*P,y+.36*P-up,.4*P,.45*P);
@@ -156,8 +156,8 @@ function crowdTex(wm,hm,kits,jump){
       if(up&&rnd()<.5){x.fillStyle=x.fillStyle;x.fillRect(px-.28*P,y+.02*P-up,.06*P,.3*P)}
     }
   }
-  const gr=x.createLinearGradient(0,0,0,c.height);gr.addColorStop(0,'rgba(0,0,0,.7)');gr.addColorStop(.35,'rgba(0,0,0,.15)');gr.addColorStop(1,'rgba(0,0,0,0)');
-  x.fillStyle=gr;x.fillRect(0,0,c.width,c.height);x.fillStyle='rgba(4,6,12,.25)';x.fillRect(0,0,c.width,c.height);
+  const gr=x.createLinearGradient(0,0,0,c.height);gr.addColorStop(0,'rgba(0,0,0,.35)');gr.addColorStop(.35,'rgba(0,0,0,.08)');gr.addColorStop(1,'rgba(0,0,0,0)');
+  x.fillStyle=gr;x.fillRect(0,0,c.width,c.height);
   return c;
 }
 const ADS=[['NORTHSTAR BANK','#0b3d91','#fff'],['KICK COLA','#d61f45','#fff'],['VOLTA ENERGY','#111','#facc15'],['ORBIT AIR','#f4f4f4','#0b3d91'],['FIELDLINE','#0f7a3a','#fff'],['PENSIVE TYRES','#facc15','#111']];

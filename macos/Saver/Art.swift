@@ -81,8 +81,9 @@ struct Art {
     static func pitch(_ ppm: Double, _ x0: Double, _ x1: Double, _ y0: Double, _ y1: Double) -> CGImage {
         bitmap(Int((x1 - x0) * ppm), Int((y1 - y0) * ppm), flipped: false) { c in
             c.scaleBy(x: ppm, y: ppm); c.translateBy(x: -x0, y: -y0)
+            c.setFillColor(cg("#47983d")); c.fill(CGRect(x: X0, y: Y0, width: X1 - X0, height: Y1 - Y0))
             for i in -2..<22 {
-                c.setFillColor(cg(i & 1 != 0 ? "#3d8a34" : "#47983d"))
+                c.setFillColor(cg(i & 1 != 0 ? "#44943a" : "#47983d"))
                 c.fill(CGRect(x: -52.5 + Double(i) * 5.25, y: Y0, width: 5.25, height: Y1 - Y0))
             }
             c.setFillColor(CGColor(gray: 0, alpha: 0.13))
@@ -119,7 +120,7 @@ struct Art {
             var r = 0
             while Double(r) * rh < hm {
                 let y = Double(r) * rh * P
-                c.setFillColor(cg(r & 1 == 1 ? "#1b1e27" : "#16181f")); c.fill(CGRect(x: 0, y: y, width: Double(W), height: rh * P))
+                c.setFillColor(cg(r & 1 == 1 ? "#2b2f39" : "#262a33")); c.fill(CGRect(x: 0, y: y, width: Double(W), height: rh * P))
                 var s = 0
                 while Double(s) * 0.55 < wm {
                     defer { s += 1 }
@@ -133,10 +134,9 @@ struct Art {
                 }
                 r += 1
             }
-            let g = CGGradient(colorsSpace: nil, colors: [CGColor(gray: 0, alpha: 0.7), CGColor(gray: 0, alpha: 0.15), CGColor(gray: 0, alpha: 0)] as CFArray,
+            let g = CGGradient(colorsSpace: nil, colors: [CGColor(gray: 0, alpha: 0.35), CGColor(gray: 0, alpha: 0.08), CGColor(gray: 0, alpha: 0)] as CFArray,
                                locations: [0, 0.35, 1])!
             c.drawLinearGradient(g, start: pt(0, 0), end: pt(0, Double(H)), options: [])
-            c.setFillColor(cg("#04060c", 0.25)); c.fill(CGRect(x: 0, y: 0, width: W, height: H))
         }
     }
 

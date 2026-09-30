@@ -12,6 +12,10 @@ on:
 permissions:
   contents: write
 
+env:
+  # Release version: the tag itself, or v1.0.<run number> for main builds. Used in the zip name and bundle version.
+  VERSION: ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || format('v1.0.{0}', github.run_number) }}
+
 jobs:
   build-macos:
     runs-on: macos-15
@@ -36,6 +40,7 @@ jobs:
             -destination "generic/platform=macOS" \
             -derivedDataPath build \
             CODE_SIGNING_ALLOWED=NO \
+            MARKETING_VERSION="${VERSION#v}" \
             build
 
       - name: Ad-hoc sign and package
@@ -45,7 +50,7 @@ jobs:
           codesign --force --deep --sign - "$SAVER"
           lipo -info "$SAVER/Contents/MacOS/Football"
           mkdir -p dist
-          ditto -c -k --keepParent "$SAVER" dist/Football.saver.zip
+          ditto -c -k --keepParent "$SAVER" "dist/Football-${VERSION}.saver.zip"
 
       - name: Render layer tree headless (snapshot check)
         run: |
@@ -88,6 +93,6 @@ jobs:
       - uses: softprops/action-gh-release@v2
         with:
           files: dist/*.zip
-          tag_name: ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || format('v1.0.{0}', github.run_number) }}
+          tag_name: ${{ env.VERSION }}
           target_commitish: ${{ github.sha }}
           generate_release_notes: true

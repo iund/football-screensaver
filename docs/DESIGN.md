@@ -3,7 +3,7 @@
 A simulated football match shown as a live TV broadcast. `mockup.html` is the reference implementation; the macOS `.saver` ports it 1:1.
 
 ## Look
-- Night match, floodlit: striped pitch, far stand + two end stands (crowd texture), LED ad boards (panel set rotates every 10 s).
+- Daytime match, uniform brightness (no vignette): subtly striped pitch (`#47983d` / `#44943a`), light crowd, far stand + two end stands (crowd texture), LED ad boards (panel set rotates every 10 s).
 - Broadcast gantry camera on the near side: `C = (0.55·cam.x, −60, 25)`, looks at `(cam.x, cam.y+5, 0)`; smoothed follow of the ball (lead 0.6 s), zooms out on long balls / breaks, follows the scorer on goals.
 - Players: side-view sprites (12 run frames with knee flex, heel kick and flight phase; 8 walk frames; idle; cadence scales with speed), mirrored by screen direction, sized by perspective, contact shadow + two faint floodlight shadows. Ball with height and ground shadow. Goals drawn as 3D line sets with nets.
 - TV graphics (Barlow Condensed): score bug top-left (codes, kit chips, score, clock, `+N` added time), `LIVE` top-right, `GOAL` lower third, half-time/full-time card. Fictional clubs, names and sponsors only.

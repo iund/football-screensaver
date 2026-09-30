@@ -125,14 +125,7 @@ final class Broadcast {
             for l in [n, f] { l.fillColor = nil; l.lineCap = .round; l.lineJoin = .round; actorsLayer.addSublayer(l) }
             goalNet.append(n); goalFrame.append(f)
         }
-        let vig = CAGradientLayer()
-        vig.type = .radial
-        vig.colors = [CGColor(gray: 0, alpha: 0), CGColor(gray: 0, alpha: 0), CGColor(gray: 0, alpha: 0.38)]
-        vig.locations = [0, 0.55, 1]
-        vig.startPoint = CGPoint(x: 0.5, y: 0.55); vig.endPoint = CGPoint(x: 1, y: 1)
-        vig.name = "vig"
-        vig.zPosition = 3; hud.root.zPosition = 4
-        root.addSublayer(vig)
+        hud.root.zPosition = 4
         root.addSublayer(hud.root)
         buildArt(for: match)
     }
@@ -333,7 +326,7 @@ final class Broadcast {
             }
             for i in -2..<22 {
                 let a = max(X0, -52.5 + Double(i) * 5.25), b = min(X1, a + 5.25)
-                if a < b { poly([(a, Y0, 0), (b, Y0, 0), (b, Y1, 0), (a, Y1, 0)], cg(i & 1 != 0 ? "#3d8a34" : "#47983d")) }
+                if a < b { poly([(a, Y0, 0), (b, Y0, 0), (b, Y1, 0), (a, Y1, 0)], cg(i & 1 != 0 ? "#44943a" : "#47983d")) }
             }
             c.setStrokeColor(CGColor(gray: 1, alpha: 0.9)); c.setLineWidth(1.2)
             func line(_ pts: [(Double, Double)]) {
