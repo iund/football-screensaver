@@ -91,8 +91,8 @@ final class Broadcast {
             return Plane(22 * 32, 68 * 32, V3(a, 40, 0), V3(1, 0, 0), V3(0, -1, 0), 32, .close(s))
         }
         planes = [far, endL, endR, pitch] + close
-        for (wm, O, U, tag) in [(120.0, V3(-60, 37.5, 0.9), V3(1, 0, 0), Plane.Tag.main), (48, V3(-57, -24, 0.9), V3(0, 1, 0), .end(-1)),
-                                (48, V3(57, 24, 0.9), V3(0, -1, 0), .end(1))] {
+        for (wm, O, U, tag) in [(120.0, V3(-60, 37.5, 0.9), V3(1, 0, 0), Plane.Tag.main), (48, V3(-57, -24, 0.9), V3(0, 1, 0), Plane.Tag.end(-1)),
+                                (48, V3(57, 24, 0.9), V3(0, -1, 0), Plane.Tag.end(1))] {
             let imgs = (0..<ADS.count).map { Art.board(wm, $0) }
             let p = Plane(imgs[0].width, imgs[0].height, O, U, V3(0, 0, -1), 24, tag)
             p.images = [imgs[0]]
@@ -182,7 +182,7 @@ final class Broadcast {
         if s != 0 { V = Basis(V3(s * 31, -5, 2.4), V3(s * 53, cam.ry, 1)); F = F0 * 1.5; return }
         let C = V3(cam.x * 0.55, -60, 25), T = V3(cam.x, cam.y + 5 - 9 * clamp(H / W - 0.7, 0, 1), 0)
         // Keep every plane corner well in front of the lens: Core Animation misbehaves at w <= 0.
-        func ok(_ b: Basis) -> Bool { planes.allSatisfy { !$0.shown(replaySide: 0) || $0.corners.allSatisfy { ($0 - C).dot(b.f) > 4 } } }
+        func ok(_ b: Basis) -> Bool { planes.allSatisfy { p in !p.shown(replaySide: 0) || p.corners.allSatisfy { q in (q - C).dot(b.f) > 4 } } }
         var b = Basis(C, T), hi = 1.0
         for _ in 0..<12 where !ok(b) {
             hi /= 2

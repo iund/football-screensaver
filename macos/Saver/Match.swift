@@ -97,8 +97,8 @@ final class Match {
     // Broadcast cues read by the renderer.
     var banner = ("", ""), bannerOn = false, cardTitle = "", cardOn = false, wipes = 0, snapCam = false
     // Goal replay: ring buffer of the last 8 s.
-    var rec = [Float](repeating: 0, count: REC * STRIDE), recN = 0, gi = 0
-    var live = [Float](repeating: 0, count: STRIDE), rpI = 0.0, rpEnd = 0, rpWiped = false
+    var rec = [Float](repeating: 0, count: Match.REC * Match.STRIDE), recN = 0, gi = 0
+    var live = [Float](repeating: 0, count: Match.STRIDE), rpI = 0.0, rpEnd = 0, rpWiped = false
 
     init(first: Bool) {
         let a = RI(TEAMS.count)
@@ -252,13 +252,13 @@ final class Match {
             kick(o, q.x, q.y, vh: 22, recv: q); return
         }
         if dG < 28 && rnd() < (dG < 18 ? 0.8 : 0.4) { shoot(o, dG); return }
-        func open(_ q: Player) -> Double { opp.map { hyp($0.x - q.x, $0.y - q.y) }.min() ?? 99 }
-        let pressed = open(o) < 2.5
+        func space(_ q: Player) -> Double { opp.map { hyp($0.x - q.x, $0.y - q.y) }.min() ?? 99 }
+        let pressed = space(o) < 2.5
         var best: Player?, bs = -9.0
         for q in mates {
             let dd = hyp(q.x - o.x, q.y - o.y)
             if dd < 6 || dd > 42 { continue }
-            let s = (q.x - o.x) * d * 0.15 + min(open(q), 8) * 0.3 - abs(dd - 16) * 0.04 + rnd() * 0.6
+            let s = (q.x - o.x) * d * 0.15 + min(space(q), 8) * 0.3 - abs(dd - 16) * 0.04 + rnd() * 0.6
             if s > bs { bs = s; best = q }
         }
         guard let q = best, bs >= 1.4 || pressed else { o.decide = R(0.4, 1); return }
