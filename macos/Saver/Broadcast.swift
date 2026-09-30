@@ -107,6 +107,8 @@ final class Broadcast {
 
         // Actors live outside `world`, never among the perspective-transformed planes, so nothing can sort them behind the pitch.
         shadowsLayer.name = "shadows"; actorsLayer.name = "actors"
+        // Core Animation depth-tests this tree (+z toward the viewer): everything drawn over the planes needs z > 0.
+        shadowsLayer.zPosition = 1; actorsLayer.zPosition = 2
         root.addSublayer(shadowsLayer)
         root.addSublayer(actorsLayer)
         for _ in 0..<23 {
@@ -129,6 +131,7 @@ final class Broadcast {
         vig.locations = [0, 0.55, 1]
         vig.startPoint = CGPoint(x: 0.5, y: 0.55); vig.endPoint = CGPoint(x: 1, y: 1)
         vig.name = "vig"
+        vig.zPosition = 3; hud.root.zPosition = 4
         root.addSublayer(vig)
         root.addSublayer(hud.root)
         buildArt(for: match)
@@ -250,7 +253,7 @@ final class Broadcast {
             a.bounds = CGRect(x: 0, y: 0, width: SW * sc, height: SH * sc)
             a.position = CGPoint(x: pf.x, y: H - pf.y)
             a.transform = p.face < 0 ? CATransform3DMakeScale(-1, 1, 1) : CATransform3DIdentity
-            a.zPosition = -pf.z / 1000
+            a.zPosition = 1 - pf.z / 1000
             s.contents = art.shadow
             s.bounds = CGRect(x: 0, y: 0, width: 36 * sc, height: 5 * sc)
             s.position = CGPoint(x: pf.x, y: H - pf.y)
@@ -262,7 +265,7 @@ final class Broadcast {
             ballLayer.contents = art.ball
             ballLayer.bounds = CGRect(x: 0, y: 0, width: 2 * r, height: 2 * r)
             ballLayer.position = CGPoint(x: bp.x, y: H - bp.y)
-            ballLayer.zPosition = -(bp.z - 0.3) / 1000
+            ballLayer.zPosition = 1 - (bp.z - 0.3) / 1000
             ballShadow.contents = art.ballShadow
             ballShadow.bounds = CGRect(x: 0, y: 0, width: 2.2 * r, height: 0.8 * r)
             ballShadow.position = CGPoint(x: bs.x, y: H - bs.y)
@@ -292,8 +295,8 @@ final class Broadcast {
         while z <= 2 {
             net.append([(x0, -3.66, min(2.44, z * 1.22)), (x1, -3.66, z), (x1, 3.66, z), (x0, 3.66, min(2.44, z * 1.22))]); z += 0.4
         }
-        n.path = path(net); n.lineWidth = max(0.6, F * 0.025 / d); n.zPosition = -d / 1000
-        f.path = path([[(x0, -3.66, 0), (x0, -3.66, 2.44), (x0, 3.66, 2.44), (x0, 3.66, 0)]]); f.lineWidth = max(0.6, F * 0.12 / d); f.zPosition = -d / 1000
+        n.path = path(net); n.lineWidth = max(0.6, F * 0.025 / d); n.zPosition = 1 - d / 1000
+        f.path = path([[(x0, -3.66, 0), (x0, -3.66, 2.44), (x0, 3.66, 2.44), (x0, 3.66, 0)]]); f.lineWidth = max(0.6, F * 0.12 / d); f.zPosition = 1 - d / 1000
     }
 
     var ready: Bool { art != nil }

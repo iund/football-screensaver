@@ -29,13 +29,14 @@ enum Snapshot {
         guard let dev = MTLCreateSystemDefaultDevice(), let q = dev.makeCommandQueue() else { print("no Metal device"); return }
         print("Metal device: \(dev.name)")
         let d = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: .bgra8Unorm, width: w, height: h, mipmapped: false)
-        d.usage = [.renderTarget, .shaderRead, .shaderWrite]; d.storageMode = .managed
+        d.usage = [.renderTarget, .shaderRead, .shaderWrite]; d.storageMode = .shared
         let tex = dev.makeTexture(descriptor: d)!
         let r = CARenderer(mtlTexture: tex, options: [kCARendererMetalCommandQueue: q])
         r.layer = b.root; r.bounds = CGRect(origin: .zero, size: size)
-        r.beginFrame(atTime: CACurrentMediaTime(), timeStamp: nil); r.addUpdate(r.bounds); r.render(); r.endFrame()
-        let cb = q.makeCommandBuffer()!, bl = cb.makeBlitCommandEncoder()!
-        bl.synchronize(resource: tex); bl.endEncoding(); cb.commit(); cb.waitUntilCompleted()
+        CATransaction.flush()
+        for _ in 0..<2 { r.beginFrame(atTime: CACurrentMediaTime(), timeStamp: nil); r.addUpdate(r.bounds); r.render(); r.endFrame() }
+        let cb = q.makeCommandBuffer()!
+        cb.commit(); cb.waitUntilCompleted()
         var bytes = [UInt8](repeating: 0, count: w * h * 4)
         tex.getBytes(&bytes, bytesPerRow: w * 4, from: MTLRegionMake2D(0, 0, w, h), mipmapLevel: 0)
         let ctx = CGContext(data: &bytes, width: w, height: h, bitsPerComponent: 8, bytesPerRow: w * 4, space: CGColorSpace(name: CGColorSpace.sRGB)!,
