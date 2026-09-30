@@ -41,6 +41,7 @@ enum Snapshot {
         tex.getBytes(&bytes, bytesPerRow: w * 4, from: MTLRegionMake2D(0, 0, w, h), mipmapLevel: 0)
         let ctx = CGContext(data: &bytes, width: w, height: h, bitsPerComponent: 8, bytesPerRow: w * 4, space: CGColorSpace(name: CGColorSpace.sRGB)!,
                             bitmapInfo: CGBitmapInfo.byteOrder32Little.rawValue | CGImageAlphaInfo.premultipliedFirst.rawValue)!
-        png(ctx.makeImage()!, "\(out)/gpu-render.png")
+        let raw = ctx.makeImage()!  // texture rows are bottom-up
+        png(bitmap(w, h, flipped: true) { $0.draw(raw, in: CGRect(x: 0, y: 0, width: w, height: h)) }, "\(out)/gpu-render.png")
     }
 }
