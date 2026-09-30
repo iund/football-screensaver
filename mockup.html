@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 html,body{margin:0;height:100%;background:#000;overflow:hidden}
-#stage{position:fixed;inset:0;overflow:hidden;background:linear-gradient(#04060c,#0a0f1c 45%,#0b1410)}
+#stage{position:fixed;inset:0;overflow:hidden;background:linear-gradient(#6fb3e6,#b9dcf3 45%,#47983d 46%)}
 .plane{position:absolute;left:0;top:0;transform-origin:0 0}
 #fx{position:absolute;inset:0;width:100%;height:100%}
 #hud{position:fixed;inset:0;pointer-events:none;font:600 clamp(13px,1.45vw,24px) 'Barlow Condensed',sans-serif;color:#fff;letter-spacing:.03em}
@@ -452,8 +452,8 @@ function drawPlayer(p,pf){
   const ph=proj(p.x,p.y,1.85),sc=(pf[1]-ph[1])/43,w=SW*sc,h=SH*sc,sp=hyp(p.vx,p.vy),b=B();
   const sv=p.vx*V.r[0]+p.vy*V.r[1];
   if(sp>.6&&Math.abs(sv)>.3)p.face=sgn(sv);else if(sp<=.6)p.face=sgn((b.x-p.x)*V.r[0]+(b.y-p.y)*V.r[1]);
-  g.fillStyle='rgba(0,0,0,.28)';g.beginPath();g.ellipse(pf[0],pf[1],7*sc,2*sc,0,0,TAU);g.fill();
-  g.fillStyle='rgba(0,0,0,.1)';for(const o of[-1,1]){g.beginPath();g.ellipse(pf[0]+o*9*sc,pf[1]-.5*sc,9*sc,1.4*sc,0,0,TAU);g.fill()}
+  // single sun shadow, cast to the right
+  g.fillStyle='rgba(0,0,0,.3)';g.beginPath();g.ellipse(pf[0]+6*sc,pf[1],11*sc,2.2*sc,0,0,TAU);g.fill();
   const spr=SPR[p.kit][p.look][sp<.5?IDLE:sp<2.4?RUNF+Math.floor(p.ph/TAU*WALKF)%WALKF:Math.floor(p.ph/TAU*RUNF)%RUNF];
   g.save();g.translate(pf[0],pf[1]-46*sc);g.scale(p.face,1);g.drawImage(spr,-w/2,0,w,h);g.restore();
 }

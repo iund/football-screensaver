@@ -60,10 +60,9 @@ struct Art {
         crowdFar = [Art.crowd(150, STAND, k2, false), Art.crowd(150, STAND, k2, true)]
         crowdEnd = (0..<2).map { _ in [Art.crowd(80, STAND, k2, false), Art.crowd(80, STAND, k2, true)] }
         shadow = bitmap(144, 20, flipped: true) { c in
-            c.setFillColor(CGColor(gray: 0, alpha: 0.1))
-            for o in [-1.0, 1.0] { c.fillEllipse(in: CGRect(x: 72 + o * 36 - 36, y: 10 - 5.6, width: 72, height: 11.2)) }
-            c.setFillColor(CGColor(gray: 0, alpha: 0.28))
-            c.fillEllipse(in: CGRect(x: 72 - 28, y: 10 - 8, width: 56, height: 16))
+            // Single sun shadow cast to the right: 36×5 units, feet at the centre, 4 px/unit.
+            c.setFillColor(CGColor(gray: 0, alpha: 0.3))
+            c.fillEllipse(in: CGRect(x: 96 - 44, y: 10 - 8.8, width: 88, height: 17.6))
         }
         ball = bitmap(32, 32, flipped: true) { c in
             let g = CGGradient(colorsSpace: nil, colors: [cg("#ffffff"), cg("#b9bec6")] as CFArray, locations: [0, 1])!

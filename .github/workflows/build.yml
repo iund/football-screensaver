@@ -50,7 +50,10 @@ jobs:
           codesign --force --deep --sign - "$SAVER"
           lipo -info "$SAVER/Contents/MacOS/Football"
           mkdir -p dist
-          ditto -c -k --keepParent "$SAVER" "dist/Football-${VERSION}.saver.zip"
+          STAGE=$(mktemp -d)
+          cp -R "$SAVER" "$STAGE/Football-${VERSION}.saver"
+          ditto -c -k --keepParent "$STAGE/Football-${VERSION}.saver" "dist/Football-${VERSION}.saver.zip"
+          unzip -l "dist/Football-${VERSION}.saver.zip" | head -5
 
       - name: Render layer tree headless (snapshot check)
         run: |

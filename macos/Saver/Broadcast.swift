@@ -73,8 +73,8 @@ final class Broadcast {
 
     init() {
         let bg = CAGradientLayer()
-        bg.colors = [cg("#04060c"), cg("#0a0f1c"), cg("#0b1410")]
-        bg.locations = [0, 0.45, 1]
+        bg.colors = [cg("#6fb3e6"), cg("#b9dcf3"), cg("#47983d"), cg("#47983d")]
+        bg.locations = [0, 0.45, 0.46, 1]
         bg.startPoint = CGPoint(x: 0.5, y: 1); bg.endPoint = CGPoint(x: 0.5, y: 0)
         bg.name = "bg"
         root.addSublayer(bg)
