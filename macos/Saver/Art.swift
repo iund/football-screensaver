@@ -152,8 +152,8 @@ struct Art {
                 let ad = ADS[(i + off) % ADS.count]
                 c.setFillColor(cg(ad.1)); c.fill(CGRect(x: Double(i) * 8 * P, y: 0, width: 8 * P, height: Double(H)))
                 let s = NSAttributedString(string: ad.0, attributes: [.font: font, .foregroundColor: NSColor(cgColor: cg(ad.2))!])
-                let sz = s.size()
-                s.draw(at: NSPoint(x: (Double(i) * 8 + 4) * P - sz.width / 2, y: (Double(H) - sz.height) / 2))
+                let sw = Double(s.size().width), sh = Double(s.size().height)
+                s.draw(at: NSPoint(x: (Double(i) * 8 + 4) * P - sw / 2, y: (Double(H) - sh) / 2))
                 i += 1
             }
             c.setFillColor(CGColor(gray: 0, alpha: 0.35)); c.fill(CGRect(x: 0, y: H - 2, width: W, height: 2))
