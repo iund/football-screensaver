@@ -87,37 +87,53 @@ const NUMS=[1,2,5,6,3,7,8,4,11,9,10];
 // 4-4-2 shape for a team attacking +x (metres; pitch is 105×68, centre at 0,0)
 const FORM=[[-49,0],[-33,-22],[-36,-8],[-36,8],[-33,22],[-15,-23],[-18,-7],[-18,7],[-15,23],[-3,-7],[-5,8]];
 
-// ---------- sprites: 8 run frames + 1 idle per kit/look, drawn facing right ----------
-const SW=24,SH=48,SS=3,SKIN=['#f1c7a5','#c68a5d','#7a4a2c'],HAIR=['#2a1a10','#111111','#b88a4a'];
+// ---------- sprites: 12 run + 8 walk frames + idle per kit/look, drawn facing right ----------
+const SW=24,SH=48,SS=3,SKIN=['#f1c7a5','#c68a5d','#7a4a2c'],LOOKS=[['#f1c7a5','#2a1a10'],['#f1c7a5','#b88a4a'],['#c68a5d','#111111'],['#7a4a2c','#111111']];
+const RUNF=12,WALKF=8,IDLE=RUNF+WALKF,sm=v=>(1-Math.cos(Math.PI*v))/2;
+// one leg's [thigh, knee flex] in radians (+ = forward) at cycle position u, 0 = foot strike
+function gait(u,run){
+  const ST=run?.38:.6,T=run?[.45,-.55]:[.32,-.3];
+  if(u<ST){const s=u/ST;return[T[0]+(T[1]-T[0])*s,(run?.3:.08)+(run?.28:.1)*Math.sin(s*Math.PI)]}
+  const s=(u-ST)/(1-ST);
+  return[T[1]+(T[0]-T[1])*sm(s)+(run?.4:.08)*Math.sin(Math.PI*s)**2,(run?.3:.08)+(run?1.55:.9)*Math.sin(Math.PI*s**.75)**1.4];
+}
 function figure(x,k,skin,hair,fr){
-  const run=fr<8,ph=fr/8*TAU;
-  x.lineCap='round';
+  const run=fr<RUNF,walk=fr>=RUNF&&fr<IDLE,u=run?fr/RUNF:(fr-RUNF)/WALKF,L=8.6;
+  const legs=[1,0].map(back=>{const[th,kn]=run||walk?gait((u+back*.5)%1,run):[back?-.1:.1,.12],ps=th-kn,
+    knee=[L*Math.sin(th),L*Math.cos(th)];return{back,ps,knee,foot:[knee[0]+L*Math.sin(ps),knee[1]+L*Math.cos(ps)]}});
+  // lowest foot on the ground (stance knee flex gives the bob), plus a short flight phase between running strides
+  const u2=u*2%1,hy=46-Math.max(...legs.map(l=>l.foot[1]))-(run&&u2>.76?1.1*Math.sin((u2-.76)/.24*Math.PI):0);
+  x.lineCap='round';x.translate(12,hy);
   const seg=(a,b,c,w)=>{x.strokeStyle=c;x.lineWidth=w;x.beginPath();x.moveTo(...a);x.lineTo(...b);x.stroke()};
-  const leg=back=>{const pl=ph+(back?Math.PI:0),th=run?.75*Math.sin(pl):(back?-.12:.12),b=run?.15+1.1*Math.max(0,Math.cos(pl)):.05,
-    hip=[12,28.5],knee=[hip[0]+8*Math.sin(th),hip[1]+8*Math.cos(th)],ps=th-b,foot=[knee[0]+9*Math.sin(ps),knee[1]+9*Math.cos(ps)],f=back?.72:1;
-    seg(hip,knee,shade(skin,f),3);seg(knee,foot,shade(k[2],f),3);x.fillStyle=back?'#000':'#161616';x.beginPath();x.ellipse(foot[0]+1,foot[1],2,1.2,0,0,TAU);x.fill()};
-  const arm=back=>{const a=(run?-.9*Math.sin(ph):.1)*(back?-1:1),sh=[12,12.5],el=[sh[0]+5.5*Math.sin(a),sh[1]+5.5*Math.cos(a)],be=a+(run?1.2:.2),
-    hd=[el[0]+5*Math.sin(be),el[1]+5*Math.cos(be)],f=back?.72:1;
+  const leg=({back,ps,knee,foot})=>{const f=back?.72:1,gr=foot[1]+hy>45.6,al=gr?0:clamp(-ps*.9,-.3,1),d=[Math.cos(al),Math.sin(al)];
+    seg([0,0],knee,shade(skin,f),3.4);seg(knee,foot,shade(k[2],f),2.9);
+    seg([foot[0]-.8*d[0],foot[1]-.8*d[1]],[foot[0]+2.4*d[0],foot[1]+2.4*d[1]],back?'#000':'#161616',2.3)};
+  const arm=back=>{const a=run?-.6*Math.cos(u*TAU)*(back?-1:1)+.1:walk?-.3*Math.cos(u*TAU)*(back?-1:1):.08,sh=[0,-16],
+    el=[sh[0]+5.5*Math.sin(a),sh[1]+5.5*Math.cos(a)],be=a+(run?1.45:walk?.5:.15),hd=[el[0]+5*Math.sin(be),el[1]+5*Math.cos(be)],f=back?.72:1;
     seg(sh,el,shade(skin,f),2.4);seg(el,hd,shade(skin,f),2.2);seg(sh,[sh[0]+2.6*Math.sin(a),sh[1]+2.6*Math.cos(a)],shade(k[0],f),3)};
-  arm(1);leg(1);leg(0);
-  x.fillStyle=k[1];x.fillRect(8,24,8,6);
-  x.fillStyle=k[0];x.beginPath();x.roundRect(7.5,10,9,15,2.5);x.fill();
-  x.fillStyle='rgba(0,0,0,.18)';x.fillRect(7.5,10,2,15);
+  const lean=run?.14:walk?.03:0;
+  x.save();x.rotate(lean);arm(1);x.restore();
+  legs.forEach(leg);
+  x.rotate(lean);
+  x.fillStyle=k[1];x.fillRect(-4,-4.5,8,6);
+  x.fillStyle=k[0];x.beginPath();x.roundRect(-4.5,-18.5,9,15,2.5);x.fill();
+  x.fillStyle='rgba(0,0,0,.18)';x.fillRect(-4.5,-18.5,2,15);
   arm(0);
-  x.fillStyle=skin;x.beginPath();x.arc(12.5,6.2,3.6,0,TAU);x.fill();
-  x.fillStyle=hair;x.beginPath();x.arc(12.3,5.6,3.7,Math.PI*.95,Math.PI*2.1);x.fill();
+  x.fillStyle=skin;x.beginPath();x.arc(.5,-22.3,3.6,0,TAU);x.fill();
+  x.fillStyle=hair;x.beginPath();x.arc(.3,-22.9,3.7,Math.PI*.95,Math.PI*2.1);x.fill();
 }
 let SPR={};
-function sprites(key,kit){for(let s=0;s<3;s++)for(let h=0;h<2;h++){const fr=[];for(let f=0;f<9;f++){const c=mk(SW*SS,SH*SS),x=c.getContext('2d');x.scale(SS,SS);figure(x,kit,SKIN[s],HAIR[s?1:h*2],f);fr.push(c)}(SPR[key]??={})[s*2+h]=fr}}
+function sprites(key,kit){SPR[key]=LOOKS.map(([s,h])=>Array.from({length:IDLE+1},(_,f)=>{const c=mk(SW*SS,SH*SS),x=c.getContext('2d');x.scale(SS,SS);figure(x,kit,s,h,f);return c}))}
 
 // ---------- static textures (rasterised once) ----------
 const PPM=14,X0=-62,X1=62,Y0=-40,Y1=40;
-function pitchTex(){
-  const c=mk((X1-X0)*PPM,(Y1-Y0)*PPM),x=c.getContext('2d');
-  x.setTransform(PPM,0,0,-PPM,-X0*PPM,Y1*PPM);
+// world rect x0..x1, y0..y1 at ppm px/m (the full pitch, or a sharper crop of one goal end for the replay camera)
+function pitchTex(ppm,x0,x1,y0,y1){
+  const c=mk((x1-x0)*ppm,(y1-y0)*ppm),x=c.getContext('2d');
+  x.setTransform(ppm,0,0,-ppm,-x0*ppm,y1*ppm);
   for(let i=-2;i<22;i++){x.fillStyle=i&1?'#3d8a34':'#47983d';x.fillRect(-52.5+i*5.25,Y0,5.25,Y1-Y0)}
   x.fillStyle='rgba(0,0,0,.13)';x.fillRect(X0,Y0,X1-X0,-34-Y0);x.fillRect(X0,34,X1-X0,Y1-34);x.fillRect(X0,-34,-52.5-X0,68);x.fillRect(52.5,-34,X1-52.5,68);
-  for(let i=0;i<60000;i++){x.fillStyle=rnd()<.5?'rgba(0,0,0,.07)':'rgba(255,255,255,.05)';x.fillRect(R(X0,X1),R(Y0,Y1),.12,.12)}
+  for(let i=(x1-x0)*(y1-y0)*6;i>0;i--){x.fillStyle=rnd()<.5?'rgba(0,0,0,.07)':'rgba(255,255,255,.05)';x.fillRect(R(x0,x1),R(y0,y1),.12,.12)}
   x.strokeStyle='rgba(255,255,255,.93)';x.lineWidth=.12;x.fillStyle='#fff';
   const circ=(cx,cy,r,a,b)=>{x.beginPath();x.arc(cx,cy,r,a,b);x.stroke()},spot=(cx,cy)=>{x.beginPath();x.arc(cx,cy,.15,0,TAU);x.fill()};
   x.strokeRect(-52.5,-34,105,68);x.beginPath();x.moveTo(0,-34);x.lineTo(0,34);x.stroke();circ(0,0,9.15,0,TAU);spot(0,0);
@@ -155,22 +171,23 @@ function boardTex(c,wm,off){
 // ---------- world planes: texture px -> world metres, shown via one 3D transform each ----------
 const SL=35*Math.PI/180,SC=Math.cos(SL),SN=Math.sin(SL),STAND=34;
 let PLANES=[];
-function plane(els,O,U,V,ppmU,ppmV){
+function plane(els,O,U,V,ppmU,ppmV,tag='main'){
   const SU=U.map(v=>v/ppmU),SV=V.map(v=>v/ppmV),N=nrm(cross(SU,SV)),w=els[0].width,h=els[0].height;
   for(const e of els){e.className='plane';e.style.width=w+'px';e.style.height=h+'px';$('stage').insertBefore(e,$('fx'))}
   const at=(u,v)=>[O[0]+SU[0]*u+SV[0]*v,O[1]+SU[1]*u+SV[1]*v,O[2]+SU[2]*u+SV[2]*v];
-  const p={els,O,SU,SV,N,corners:[at(0,0),at(w,0),at(0,h),at(w,h)]};PLANES.push(p);return p;
+  const p={els,tag,O,SU,SV,N,corners:[at(0,0),at(w,0),at(0,h),at(w,h)]};PLANES.push(p);return p;
 }
 let boards=[];
 function buildWorld(k0,k1){
   $('stage').querySelectorAll('.plane').forEach(e=>e.remove());PLANES=[];boards=[];
   const kits=[k0,k1],cw=(w,h)=>[crowdTex(w,h,kits,0),crowdTex(w,h,kits,1)];
   plane(cw(150,STAND),[-75,40+STAND*SC,STAND*SN],[1,0,0],[0,-SC,-SN],8,8);
-  plane(cw(80,STAND),[-62-STAND*SC,-40,STAND*SN],[0,1,0],[SC,0,-SN],8,8);
-  plane(cw(80,STAND),[62+STAND*SC,40,STAND*SN],[0,-1,0],[-SC,0,-SN],8,8);
-  plane([pitchTex()],[X0,Y1,0],[1,0,0],[0,-1,0],PPM,PPM);
-  const bd=(wm,O,U)=>{const c=mk(1,1);boardTex(c,wm,0);boards.push([c,wm]);plane([c],O,U,[0,0,-1],24,24)};
-  bd(120,[-60,37.5,.9],[1,0,0]);bd(48,[-57,-24,.9],[0,1,0]);bd(48,[57,24,.9],[0,-1,0]);
+  plane(cw(80,STAND),[-62-STAND*SC,-40,STAND*SN],[0,1,0],[SC,0,-SN],8,8,'e-1');
+  plane(cw(80,STAND),[62+STAND*SC,40,STAND*SN],[0,-1,0],[-SC,0,-SN],8,8,'e1');
+  plane([pitchTex(PPM,X0,X1,Y0,Y1)],[X0,Y1,0],[1,0,0],[0,-1,0],PPM,PPM);
+  for(const s of[-1,1]){const a=s>0?40:-62;plane([pitchTex(32,a,a+22,-28,40)],[a,40,0],[1,0,0],[0,-1,0],32,32,'c'+s)}
+  const bd=(wm,O,U,tag)=>{const c=mk(1,1);boardTex(c,wm,0);boards.push([c,wm]);plane([c],O,U,[0,0,-1],24,24,tag)};
+  bd(120,[-60,37.5,.9],[1,0,0]);bd(48,[-57,-24,.9],[0,1,0],'e-1');bd(48,[57,24,.9],[0,-1,0],'e1');
 }
 
 // ---------- camera: broadcast gantry on the near side, panning and dollying with play ----------
@@ -178,12 +195,16 @@ let VW,VH,DPR,F0,F,CX,CY,V;
 const fx=$('fx'),g=fx.getContext('2d');
 function resize(){DPR=Math.min(2,devicePixelRatio||1);VW=innerWidth;VH=innerHeight;fx.width=VW*DPR;fx.height=VH*DPR;CX=VW/2;CY=VH/2;F0=Math.max(VW,VH*1.3)/(2*Math.tan(19*Math.PI/180))}
 addEventListener('resize',resize);
-const cam={x:0,y:0,z:1};
+const cam={x:0,y:0,z:1,ry:0};
 function basis(C,T){const f=nrm(sub(T,C)),r=nrm(cross(f,[0,0,1]));return{C,f,r,u:cross(r,f)}}
+// replay: low camera on the pitch in front of the scoring goal, facing the net; only that end's planes are shown
+const replaySide=()=>M.phase==='replay'?sgn(M.celeb[0]):0,shown=p=>{const s=replaySide();return s?p.tag==='e'+s||p.tag==='c'+s:p.tag[0]!=='c'};
 function view(){
-  const rp=M.phase==='replay',C=rp?[cam.x*.8,-50,11]:[cam.x*.55,-60,25];let T=[cam.x,rp?cam.y:cam.y+5-9*clamp(VH/VW-.7,0,1),0],b=basis(C,T);
+  const s=replaySide();
+  if(s){V=basis([s*31,-5,2.4],[s*53,cam.ry,1]);F=F0*1.5;return}
+  const C=[cam.x*.55,-60,25];let T=[cam.x,cam.y+5-9*clamp(VH/VW-.7,0,1),0],b=basis(C,T);
   // keep every plane corner well in front of the lens (Core Animation / CSS both misbehave at w<=0)
-  const ok=b=>PLANES.every(p=>p.corners.every(q=>dot(sub(q,C),b.f)>4));
+  const ok=b=>PLANES.every(p=>!shown(p)||p.corners.every(q=>dot(sub(q,C),b.f)>4));
   for(let lo=0,hi=1,i=0;!ok(b)&&i<12;i++){const m=(lo+hi)/2;hi=m;b=basis(C,[C[0]+(T[0]-C[0])*m,T[1],0]);if(ok(b))break}
   V=b;F=F0*cam.z;
 }
@@ -202,10 +223,10 @@ function newMatch(first){
   const gks=GKKITS.filter(k=>used.every(u=>cdist(u,k[0])>150)),ref=used.some(u=>cdist(u,'#111111')<120)?['#facc15','#111111','#111111']:['#111111','#111111','#111111'];
   SPR={};sprites(0,ta.kit);sprites(1,tb.kit);sprites(2,gks[0]);sprites(3,gks[1]||GKKITS[3]);sprites(4,ref);
   const names=[...NAMES].sort(()=>rnd()-.5);
-  const team=(d,dir,t)=>({...d,dir,score:0,players:FORM.map((f,i)=>({t,i,x:f[0]*dir,y:f[1],vx:0,vy:0,ph:R(0,TAU),face:dir,stun:0,num:NUMS[i],name:names[t*11+i],kit:i?t:2+t,look:RI(6),wob:R(0,99)}))});
+  const team=(d,dir,t)=>({...d,dir,score:0,players:FORM.map((f,i)=>({t,i,x:f[0]*dir,y:f[1],vx:0,vy:0,ph:R(0,TAU),face:dir,stun:0,num:NUMS[i],name:names[t*11+i],kit:i?t:2+t,look:RI(4),wob:R(0,99)}))});
   M={teams:[team(ta,1,0),team(tb,-1,1)],time:0,half:1,added:1+RI(4),clock:0,phase:'play',
      ball:{x:0,y:0,z:0,vx:0,vy:0,vz:0,owner:null,last:0,kicker:null,kickT:0,shot:null,recv:null},
-     ref:{x:-6,y:-9,vx:0,vy:0,ph:0,face:1,kit:4,look:RI(6),i:-1,t:-1,stun:0}};
+     ref:{x:-6,y:-9,vx:0,vy:0,ph:0,face:1,kit:4,look:RI(4),i:-1,t:-1,stun:0}};
   M.all=[...M.teams[0].players,...M.teams[1].players];
   M.rec={buf:Array.from({length:REC},()=>new Float32Array(23*5+3)),n:0};
   buildWorld(ta.kit[0],tb.kit[0]);
@@ -248,7 +269,7 @@ function assignPlay(){
     if(b.recv){b.recv.tx=px;b.recv.ty=py;b.recv.spd=7.5}
     if(b.shot){
       const k=T(1-b.shot.t).players[0],gl=gx(b.shot.t),yc=b.vx?b.y+b.vy*(gl-b.x)/b.vx:b.y,sv=b.shot.out==='save';
-      k.tx=gl-T(b.shot.t).dir*.6;k.ty=clamp(sv?yc:yc*.25,-4,4);k.spd=sv?10:3;
+      k.tx=gl-T(b.shot.t).dir*.6;k.ty=clamp(sv?yc:yc*.55,-4,4);k.spd=sv?10:4.5;
     }
   }
 }
@@ -365,7 +386,7 @@ function step(dt){
   }
   for(let i=0;i<M.all.length;i++)for(let j=i+1;j<M.all.length;j++){const p=M.all[i],q=M.all[j],dx=q.x-p.x,dy=q.y-p.y,d=hyp(dx,dy);
     if(d<.9&&d>1e-3&&p!==o&&q!==o){const k=(.9-d)/d*.5;p.x-=dx*k;p.y-=dy*k;q.x+=dx*k;q.y+=dy*k}}
-  for(const p of[...M.all,rf]){p.x+=p.vx*dt;p.y+=p.vy*dt;p.ph+=hyp(p.vx,p.vy)*dt*1.4}
+  for(const p of[...M.all,rf]){p.x+=p.vx*dt;p.y+=p.vy*dt;const sp=hyp(p.vx,p.vy);if(sp>.5)p.ph+=dt*(sp<2.4?2.8+sp*1.3:4+sp*.9)}
   // ball
   if(M.phase==='restart'){const rs=M.rs,k=rs.taker,at=hyp(k.x-k.tx,k.y-k.ty)<.8;rs.el+=dt;
     if(at){rs.t-=dt;if(rs.kind==='throw'){b.x=k.x;b.y=k.y;b.z=2.1}}
@@ -413,17 +434,18 @@ function hud(force){
 function render(dt){
   const b=B(),rp=M.phase==='replay',focus=M.phase==='goal'?M.scorer:M.phase==='break'?{x:0,y:0,vx:0}:b;
   const tx=clamp(focus.x+(focus.vx||0)*.6,rp?-50:-41,rp?50:41),ty=clamp(focus.y*(rp?.8:.55),-16,16),k=M.snapCam?1:1-Math.exp(-dt*(rp?6:1.8));
-  if(M.snapCam){M.snapCam=0;cam.z=1.7}
-  cam.x+=(tx-cam.x)*k;cam.y+=(ty-cam.y)*k*.6;
-  cam.z+=((rp?1.7:M.phase==='break'?.8:b.z>3||hyp(b.vx,b.vy)>16?.9:M.phase==='goal'?1.12:1)-cam.z)*(1-Math.exp(-dt*.9));
+  if(M.snapCam){M.snapCam=0;cam.ry=clamp(b.y*.3,-2,2)}
+  cam.ry+=(clamp(b.y*.3,-2,2)-cam.ry)*(1-Math.exp(-dt*2));
+  if(!rp){cam.x+=(tx-cam.x)*k;cam.y+=(ty-cam.y)*k*.6}
+  cam.z+=((rp?cam.z:M.phase==='break'?.8:b.z>3||hyp(b.vx,b.vy)>16?.9:M.phase==='goal'?1.12:1)-cam.z)*(1-Math.exp(-dt*.9));
   view();
   const crowdUp=(M.phase==='goal'||rp&&M.rp.i>=M.gi)&&(M.clock*4|0)&1;
-  for(const p of PLANES){const m=css(p);p.els.forEach((e,i)=>{e.style.transform=m;e.style.visibility=p.els.length>1&&i!==+crowdUp?'hidden':'visible'})}
+  for(const p of PLANES){const on=shown(p),m=on?css(p):'';p.els.forEach((e,i)=>{e.style.display=on?'':'none';if(on){e.style.transform=m;e.style.visibility=p.els.length>1&&i!==+crowdUp?'hidden':'visible'}})}
   g.setTransform(DPR,0,0,DPR,0,0);g.clearRect(0,0,VW,VH);
   const items=[];
   for(const p of[...M.all,M.ref]){const pf=proj(p.x,p.y,0);if(pf[2]>1)items.push([pf[2],()=>drawPlayer(p,pf)])}
-  for(const s of[-1,1])items.push([proj(s*53,0,0)[2],()=>drawGoal(s)]);
-  const bp=proj(b.x,b.y,b.z+.11);items.push([bp[2]-.3,()=>drawBall(b,bp)]);
+  for(const s of[-1,1]){const d=proj(s*53,0,0)[2];if(d>1)items.push([d,()=>drawGoal(s)])}
+  const bp=proj(b.x,b.y,b.z+.11);if(bp[2]>1)items.push([bp[2]-.3,()=>drawBall(b,bp)]);
   items.sort((a,b)=>b[0]-a[0]).forEach(i=>i[1]());
 }
 function drawPlayer(p,pf){
@@ -432,7 +454,7 @@ function drawPlayer(p,pf){
   if(sp>.6&&Math.abs(sv)>.3)p.face=sgn(sv);else if(sp<=.6)p.face=sgn((b.x-p.x)*V.r[0]+(b.y-p.y)*V.r[1]);
   g.fillStyle='rgba(0,0,0,.28)';g.beginPath();g.ellipse(pf[0],pf[1],7*sc,2*sc,0,0,TAU);g.fill();
   g.fillStyle='rgba(0,0,0,.1)';for(const o of[-1,1]){g.beginPath();g.ellipse(pf[0]+o*9*sc,pf[1]-.5*sc,9*sc,1.4*sc,0,0,TAU);g.fill()}
-  const spr=SPR[p.kit][p.look][sp<.5?8:Math.floor(p.ph/TAU*8)%8];
+  const spr=SPR[p.kit][p.look][sp<.5?IDLE:sp<2.4?RUNF+Math.floor(p.ph/TAU*WALKF)%WALKF:Math.floor(p.ph/TAU*RUNF)%RUNF];
   g.save();g.translate(pf[0],pf[1]-46*sc);g.scale(p.face,1);g.drawImage(spr,-w/2,0,w,h);g.restore();
 }
 function drawBall(b,bp){

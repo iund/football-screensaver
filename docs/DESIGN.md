@@ -5,7 +5,7 @@ A simulated football match shown as a live TV broadcast. `mockup.html` is the re
 ## Look
 - Night match, floodlit: striped pitch, far stand + two end stands (crowd texture), LED ad boards (panel set rotates every 10 s).
 - Broadcast gantry camera on the near side: `C = (0.55·cam.x, −60, 25)`, looks at `(cam.x, cam.y+5, 0)`; smoothed follow of the ball (lead 0.6 s), zooms out on long balls / breaks, follows the scorer on goals.
-- Players: side-view sprites (8 run frames + idle), mirrored by screen direction, sized by perspective, contact shadow + two faint floodlight shadows. Ball with height and ground shadow. Goals drawn as 3D line sets with nets.
+- Players: side-view sprites (12 run frames with knee flex, heel kick and flight phase; 8 walk frames; idle; cadence scales with speed), mirrored by screen direction, sized by perspective, contact shadow + two faint floodlight shadows. Ball with height and ground shadow. Goals drawn as 3D line sets with nets.
 - TV graphics (Barlow Condensed): score bug top-left (codes, kit chips, score, clock, `+N` added time), `LIVE` top-right, `GOAL` lower third, half-time/full-time card. Fictional clubs, names and sponsors only.
 
 ## Simulation (fixed 60 Hz step, `step(dt)`)
@@ -13,7 +13,7 @@ A simulated football match shown as a live TV broadcast. `mockup.html` is the re
 - Owner dribbles toward goal avoiding opponents; decides every 0.4–1.6 s: shoot (<28 m), pass (forwardness + space + distance score; lofted if long or lane blocked) or keep dribbling.
 - Shot outcome fixed at the kick (goal / save / wide-over); keeper reacts accordingly.
 - Nearest defender presses, second covers; tackles and interceptions are probabilistic.
-- Goal cutscene: 3.5 s live celebration with `GOAL` lower third, then a `REPLAY` wipe, slow-motion (0.4×) closeup replay of the last 3 s before the goal + 0.7 s after (8 s ring buffer of player/ball state, interpolated), wipe back to live, kickoff. Replay camera: `C = (0.8·cam.x, −50, 11)`, zoom 1.7, `LIVE` tag becomes `REPLAY`.
+- Goal cutscene: 3.5 s live celebration with `GOAL` lower third, then a `REPLAY` wipe, slow-motion (0.4×) replay of the last 3 s before the goal + 0.7 s after (8 s ring buffer of player/ball state, interpolated), wipe back to live, kickoff. Replay camera: low on the pitch facing the scoring goal, `C = (s·31, −5, 2.4)` looking at `(s·53, ≈ball.y·0.3, 1)`, zoom 1.5 — shows the keeper missing and the ball hitting the net. Only that end's stand/boards plus a 32 px/m crop of that goal area are shown (every other plane would sit behind the lens). `LIVE` tag becomes `REPLAY`.
 - Restarts: kickoff, throw-in, goal kick, corner. Match clock is real time: 2 × 45 min + added time, HT/FT card, then a new fixture.
 
 ## macOS port (rules from `iund/spreadpoint-clock-screensaver`)
