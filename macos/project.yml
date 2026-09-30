@@ -1,0 +1,27 @@
+# XcodeGen spec: `cd macos && xcodegen` writes FootballScreensaver.xcodeproj (not checked in).
+name: FootballScreensaver
+options:
+  deploymentTarget:
+    macOS: "13.0"
+targets:
+  Football:
+    type: bundle
+    platform: macOS
+    sources:
+      - path: Saver
+        excludes: ["Info.plist"]
+    dependencies:
+      - sdk: ScreenSaver.framework
+    settings:
+      base:
+        PRODUCT_NAME: Football
+        PRODUCT_BUNDLE_IDENTIFIER: com.iund.footballsaver
+        WRAPPER_EXTENSION: saver
+        INFOPLIST_FILE: Saver/Info.plist
+        GENERATE_INFOPLIST_FILE: NO
+        SWIFT_VERSION: "5.0"
+        MARKETING_VERSION: "1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        ONLY_ACTIVE_ARCH: NO
+        CODE_SIGN_STYLE: Manual
+        CODE_SIGN_IDENTITY: "-"

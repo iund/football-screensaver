@@ -1,0 +1,67 @@
+name: Build
+
+# Every push builds the universal .saver. Pushing a v* tag also publishes it as a GitHub release.
+on:
+  push:
+    branches: ["**"]
+    tags: ["v*"]
+  pull_request:
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  build-macos:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Generate Xcode project
+        run: |
+          brew install xcodegen
+          cd macos && xcodegen
+
+      - name: Build screensaver (Release, universal)
+        run: |
+          xcodebuild \
+            -project macos/FootballScreensaver.xcodeproj \
+            -scheme Football \
+            -configuration Release \
+            -destination "generic/platform=macOS" \
+            -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+
+      - name: Ad-hoc sign and package
+        run: |
+          set -euo pipefail
+          SAVER="build/Build/Products/Release/Football.saver"
+          codesign --force --deep --sign - "$SAVER"
+          lipo -info "$SAVER/Contents/MacOS/Football"
+          mkdir -p dist
+          ditto -c -k --keepParent "$SAVER" dist/Football.saver.zip
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Football-saver-${{ github.sha }}
+          path: dist/*.zip
+          if-no-files-found: error
+
+  release:
+    needs: build-macos
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: Football-saver-${{ github.sha }}
+          path: dist
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*.zip
+          generate_release_notes: true
