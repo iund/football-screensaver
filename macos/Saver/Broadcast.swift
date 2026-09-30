@@ -105,8 +105,10 @@ final class Broadcast {
             DispatchQueue.main.async { pitch.images = [main]; close[0].images = [ends[0]]; close[1].images = [ends[1]] }
         }
 
-        world.addSublayer(shadowsLayer)
-        world.addSublayer(actorsLayer)
+        // Actors live outside `world`, never among the perspective-transformed planes, so nothing can sort them behind the pitch.
+        shadowsLayer.name = "shadows"; actorsLayer.name = "actors"
+        root.addSublayer(shadowsLayer)
+        root.addSublayer(actorsLayer)
         for _ in 0..<23 {
             let s = CALayer(), a = CALayer()
             a.anchorPoint = CGPoint(x: 0.5, y: 2 / SH)
@@ -198,12 +200,13 @@ final class Broadcast {
     }
 
     /// Maps a plane layer's local points (y up, anchor at its bottom-left) to the view (y up), perspective included.
+    /// Output z is 0: any depth would let Core Animation sort the planes in front of the sprite layers.
     private func transform(_ p: Plane) -> CATransform3D {
         func col(_ v: V3, _ t: Double) -> [Double] {
             let xc = v.dot(V.r), yc = v.dot(V.u), zc = v.dot(V.f), X = F * xc + W / 2 * zc, Y = -F * yc + H / 2 * zc
             return [X, H * zc - Y, t, zc]
         }
-        let cu = col(p.SU, 0), cv = col(p.SV, 0), cn = col(p.N, 0), co = col(p.O - V.C, 1), h = p.h
+        let cu = col(p.SU, 0), cv = col(p.SV, 0), cn = col(p.N, 0), co = col(p.O - V.C, 0), h = p.h
         return CATransform3D(m11: cu[0], m12: cu[1], m13: cu[2], m14: cu[3],
                              m21: -cv[0], m22: -cv[1], m23: -cv[2], m24: -cv[3],
                              m31: cn[0], m32: cn[1], m33: cn[2], m34: cn[3],
@@ -247,7 +250,7 @@ final class Broadcast {
             a.bounds = CGRect(x: 0, y: 0, width: SW * sc, height: SH * sc)
             a.position = CGPoint(x: pf.x, y: H - pf.y)
             a.transform = p.face < 0 ? CATransform3DMakeScale(-1, 1, 1) : CATransform3DIdentity
-            a.zPosition = -pf.z
+            a.zPosition = -pf.z / 1000
             s.contents = art.shadow
             s.bounds = CGRect(x: 0, y: 0, width: 36 * sc, height: 5 * sc)
             s.position = CGPoint(x: pf.x, y: H - pf.y)
@@ -259,7 +262,7 @@ final class Broadcast {
             ballLayer.contents = art.ball
             ballLayer.bounds = CGRect(x: 0, y: 0, width: 2 * r, height: 2 * r)
             ballLayer.position = CGPoint(x: bp.x, y: H - bp.y)
-            ballLayer.zPosition = -(bp.z - 0.3)
+            ballLayer.zPosition = -(bp.z - 0.3) / 1000
             ballShadow.contents = art.ballShadow
             ballShadow.bounds = CGRect(x: 0, y: 0, width: 2.2 * r, height: 0.8 * r)
             ballShadow.position = CGPoint(x: bs.x, y: H - bs.y)
@@ -289,8 +292,8 @@ final class Broadcast {
         while z <= 2 {
             net.append([(x0, -3.66, min(2.44, z * 1.22)), (x1, -3.66, z), (x1, 3.66, z), (x0, 3.66, min(2.44, z * 1.22))]); z += 0.4
         }
-        n.path = path(net); n.lineWidth = max(0.6, F * 0.025 / d); n.zPosition = -d
-        f.path = path([[(x0, -3.66, 0), (x0, -3.66, 2.44), (x0, 3.66, 2.44), (x0, 3.66, 0)]]); f.lineWidth = max(0.6, F * 0.12 / d); f.zPosition = -d
+        n.path = path(net); n.lineWidth = max(0.6, F * 0.025 / d); n.zPosition = -d / 1000
+        f.path = path([[(x0, -3.66, 0), (x0, -3.66, 2.44), (x0, 3.66, 2.44), (x0, 3.66, 0)]]); f.lineWidth = max(0.6, F * 0.12 / d); f.zPosition = -d / 1000
     }
 
     // MARK: - Still (cacheDisplay / wallpaper snapshot)
