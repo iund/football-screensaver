@@ -22,7 +22,10 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
 
+    // CI runs lintDebug: any API newer than minSdk 13 (Android 3.2) fails the build.
     lint {
-        abortOnError false
+        checkOnly 'NewApi'
+        error 'NewApi'
+        abortOnError true
     }
 }
