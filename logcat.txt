@@ -1,0 +1,484 @@
+--------- beginning of main
+10-07 11:34:07.600  2287  2620 I MediaProvider: Upgrading media database from version 0 to 800, which will destroy all old data
+10-07 11:34:07.610  1859  1859 I OmtpVvmCarrierCfgHlpr: Requesting VVM activation for subId: 1
+10-07 11:34:07.615  2496  2496 D AlertReceiver: onReceive: a=android.intent.action.PROVIDER_CHANGED Intent { act=android.intent.action.PROVIDER_CHANGED dat=content://com.android.calendar flg=0x20000010 cmp=com.android.calendar/.alerts.AlertReceiver }
+10-07 11:34:07.619  2496  2631 D AlertService: 0 Action = android.intent.action.PROVIDER_CHANGED
+10-07 11:34:07.639  2634  2634 W art     : Unexpected CPU variant for X86 using defaults: x86_64
+--------- beginning of system
+10-07 11:34:07.642  1617  2044 I ActivityManager: Start proc 2634:com.svox.pico/u0a48 for broadcast com.svox.pico/.VoiceDataInstallerReceiver
+10-07 11:34:07.667  2287  2620 D MediaProvider: Adjusting external storage paths to: /storage/emulated/0
+10-07 11:34:07.675  2287  2620 E SQLiteLog: (1) no such table: files
+10-07 11:34:07.706  2629  2629 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-07 11:34:07.707  2287  2620 W MediaScanner: forcing rescan of /system/media/audio/alarms/Alarm_Classic.oggsince ringtone setting didn't finish
+10-07 11:34:07.707  2629  2629 D AndroidRuntime: CheckJNI is OFF
+10-07 11:34:07.713  2287  2620 W MediaProvider: Missing volume for /system; assuming invalid
+10-07 11:34:07.714  2287  2620 W MediaProvider: Missing volume for /system/media; assuming invalid
+10-07 11:34:07.714  2287  2620 W MediaProvider: Missing volume for /system/media/audio; assuming invalid
+10-07 11:34:07.715  2287  2620 W MediaProvider: Missing volume for /system/media/audio/alarms; assuming invalid
+10-07 11:34:07.723  1330  1857 E MetadataRetrieverClient: failed to extract an album art
+10-07 11:34:07.724  2287  2620 W MediaProvider: Missing volume for /system/media/audio/alarms/Alarm_Beep_01.ogg; assuming invalid
+10-07 11:34:07.725  2287  2620 W MediaProvider: Missing volume for /system/media/audio/alarms/Alarm_Beep_02.ogg; assuming invalid
+10-07 11:34:07.726  2287  2620 W MediaProvider: Missing volume for /system/media/audio/alarms/Alarm_Beep_03.ogg; assuming invalid
+10-07 11:34:07.726  2629  2629 W art     : Unexpected CPU variant for X86 using defaults: x86_64
+10-07 11:34:07.726  2287  2620 W MediaProvider: Missing volume for /system/media/audio/alarms/Alarm_Buzzer.ogg; assuming invalid
+10-07 11:34:07.728  2629  2629 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+10-07 11:34:07.729  2287  2620 W MediaProvider: Missing volume for /system/media/audio/alarms/Alarm_Classic.ogg; assuming invalid
+10-07 11:34:07.741  1617  1689 D WifiStateMachine: CMD_AUTO_CONNECT sup state DisconnectedState my state DisconnectedState nid=0 roam=false
+10-07 11:34:07.742  1617  1689 D WifiStateMachine: CMD_AUTO_CONNECT will save config -> "AndroidWifi" nid=0
+10-07 11:34:07.755  1617  1689 D WifiStateMachine: CMD_AUTO_CONNECT did save config ->  nid=0
+10-07 11:34:07.756  1900  1900 I wpa_supplicant: wlan0: SME: Trying to authenticate with 02:00:00:00:01:00 (SSID='AndroidWifi' freq=2412 MHz)
+10-07 11:34:07.756  2629  2629 E memtrack: Couldn't load memtrack module (No such file or directory)
+10-07 11:34:07.756  2629  2629 E android.os.Debug: failed to load memtrack module: -2
+10-07 11:34:07.757  2629  2629 I Radio-JNI: register_android_hardware_Radio DONE
+10-07 11:34:07.761  2629  2629 D AndroidRuntime: Calling main entry com.android.commands.am.Am
+10-07 11:34:07.765  2064  2064 I AlarmClock: Detected change to system default alarm ringtone; clearing caches
+10-07 11:34:07.769  1617  2658 D WifiNetworkHistory: saving network history: "AndroidWifi"NONE gw: null Network Selection-status: NETWORK_SELECTION_ENABLED ephemeral=false choice:null link:0 status:1 nid:0 hasEverConnected: false
+10-07 11:34:07.769  1617  2658 V WifiNetworkHistory: writeKnownNetworkHistory write config "AndroidWifi"NONE
+10-07 11:34:07.769  1617  2658 D WifiNetworkHistory: saving network history: "AndroidWifi"NONE gw: null Network Selection-status: NETWORK_SELECTION_ENABLED ephemeral=false choice:null link:0 status:1 nid:0 hasEverConnected: false
+10-07 11:34:07.769  1617  2658 V WifiNetworkHistory: writeKnownNetworkHistory write config "AndroidWifi"NONE
+10-07 11:34:07.772  1607  1607 I hostapd : wlan1: STA 02:00:00:44:55:66 IEEE 802.11: authenticated
+10-07 11:34:07.772  1607  1607 I hostapd : wlan1: STA 02:00:00:44:55:66 IEEE 802.11: authenticated
+10-07 11:34:07.773  1900  1900 I wpa_supplicant: wlan0: Trying to associate with 02:00:00:00:01:00 (SSID='AndroidWifi' freq=2412 MHz)
+10-07 11:34:07.782  1607  1607 I hostapd : wlan1: STA 02:00:00:44:55:66 IEEE 802.11: associated (aid 1)
+10-07 11:34:07.782  1607  1607 I hostapd : wlan1: STA 02:00:00:44:55:66 IEEE 802.11: associated (aid 1)
+10-07 11:34:07.782  1607  1607 I hostapd : wlan1: AP-STA-CONNECTED 02:00:00:44:55:66
+10-07 11:34:07.791  1900  1900 I wpa_supplicant: wlan0: Associated with 02:00:00:00:01:00
+10-07 11:34:07.791  1900  1900 I wpa_supplicant: wlan0: CTRL-EVENT-CONNECTED - Connection to 02:00:00:00:01:00 completed [id=0 id_str=%7B%22creatorUid%22%3A%22-1%22%2C%22configKey%22%3A%22%5C%22AndroidWifi%5C%22NONE%22%7D]
+10-07 11:34:07.791  1900  1900 I wpa_supplicant: wlan0: CTRL-EVENT-SUBNET-STATUS-UPDATE status=0
+10-07 11:34:07.795  1617  1629 I ActivityManager: START u0 {flg=0x10000000 cmp=com.iund.football/.MainActivity} from uid 2000 on display 0
+10-07 11:34:07.796  1617  1689 E WifiScanner: listener cannot be found
+10-07 11:34:07.801  1617  1689 D ConnectivityService: registerNetworkAgent NetworkAgentInfo{ ni{[type: WIFI[], state: CONNECTING/CONNECTING, reason: (unspecified), extra: "AndroidWifi", failover: false, available: true, roaming: false, metered: false]}  network{101}  nethandle{433808132830}  lp{{LinkAddresses: []  Routes: [] DnsAddresses: [] Domains: null MTU: 0}}  nc{[ Transports: WIFI Capabilities: NOT_METERED&INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VPN LinkUpBandwidth>=1048576Kbps LinkDnBandwidth>=1048576Kbps]}  Score{20}  everValidated{false}  lastValidated{false}  created{false} lingering{false} explicitlySelected{false} acceptUnvalidated{false} everCaptivePortalDetected{false} lastCaptivePortalDetected{false} }
+10-07 11:34:07.801  1617  1693 D ConnectivityService: NetworkAgentInfo [WIFI () - 101] EVENT_NETWORK_INFO_CHANGED, going from null to CONNECTING
+10-07 11:34:07.801  2629  2629 D AndroidRuntime: Shutting down VM
+10-07 11:34:07.809  2662  2662 I art     : Late-enabling -Xcheck:jni
+10-07 11:34:07.810  2662  2662 W art     : Unexpected CPU variant for X86 using defaults: x86_64
+10-07 11:34:07.811  1617  2044 I ActivityManager: Start proc 2662:com.iund.football/u0a62 for activity com.iund.football/.MainActivity
+10-07 11:34:07.827  1617  1689 D WifiStateMachine: Start Dhcp Watchdog 1
+10-07 11:34:07.833  1617  1689 D WifiNative-wlan0: configureNeighborDiscoveryOffload(true)
+10-07 11:34:07.839  1304  1307 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+10-07 11:34:07.841  2662  2662 W System  : ClassLoader referenced unknown path: /data/app/com.iund.football-1/lib/x86_64
+10-07 11:34:07.848  1765  1765 V PhoneStatusBar: setLightsOn(true)
+10-07 11:34:07.854  2212  2267 D EGL_emulation: eglMakeCurrent: 0x70b85ba493c0: ver 3 0 (tinfo 0x70b85ba0cac0)
+10-07 11:34:07.880  1617  2679 D DhcpClient: Receive thread started
+10-07 11:34:07.881  1617  2677 D DhcpClient: Broadcasting DHCPDISCOVER
+10-07 11:34:07.909  1617  2043 I WindowManager: Destroying surface Surface(name=com.android.launcher3/com.android.launcher3.Launcher) called by com.android.server.wm.WindowStateAnimator.destroySurface:2014 com.android.server.wm.WindowStateAnimator.destroySurfaceLocked:881 com.android.server.wm.WindowState.destroyOrSaveSurface:2073 com.android.server.wm.WindowManagerService.tryStartExitingAnimation:3017 com.android.server.wm.WindowManagerService.relayoutWindow:2897 com.android.server.wm.Session.relayout:215 android.view.IWindowSession$Stub.onTransact:286 com.android.server.wm.Session.onTransact:136 
+10-07 11:34:08.069  2662  2681 D         : HostConnection::get() New Host Connection established 0x70b85ba12720, tid 2681
+10-07 11:34:08.070  1765  1765 V PhoneStatusBar: setLightsOn(true)
+10-07 11:34:08.075  2662  2681 D EGL_emulation: eglCreateContext: 0x70b85ba49820: maj 3 min 0 rcv 3
+10-07 11:34:08.130  2662  2681 D EGL_emulation: eglMakeCurrent: 0x70b85ba49820: ver 3 0 (tinfo 0x70b85ba0c7a0)
+10-07 11:34:08.132  2662  2681 E eglCodecCommon: glUtilsParamSize: unknow param 0x00008cdf
+10-07 11:34:08.132  2662  2681 E eglCodecCommon: glUtilsParamSize: unknow param 0x00008824
+10-07 11:34:08.133  2662  2681 E libc    : Access denied finding property "ro.opengles.version"
+10-07 11:34:08.140  2662  2681 I Football: GL context created
+10-07 11:34:08.140  2662  2681 I Football: surface 320x640
+10-07 11:34:08.121  2662  2662 W com.iund.football: type=1400 audit(0.0:5): avc: denied { read } for comm=474C54687265616420313333 name="u:object_r:opengles_prop:s0" dev="tmpfs" ino=1150 scontext=u:r:untrusted_app:s0:c512,c768 tcontext=u:object_r:opengles_prop:s0 tclass=file permissive=0
+10-07 11:34:08.233  1304  2122 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+10-07 11:34:08.236  2662  2662 D         : HostConnection::get() New Host Connection established 0x70b84c41f960, tid 2662
+10-07 11:34:08.249  1765  1765 V PhoneStatusBar: setLightsOn(true)
+10-07 11:34:08.250  1617  1638 I ActivityManager: Displayed com.iund.football/.MainActivity: +450ms
+10-07 11:34:08.251  1765  1765 V PhoneStatusBar: setLightsOn(true)
+10-07 11:34:08.254  1304  1309 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+10-07 11:34:08.255  1765  1765 V PhoneStatusBar: setLightsOn(true)
+10-07 11:34:08.271  1617  1638 I WindowManager: Destroying surface Surface(name=Starting com.iund.football) called by com.android.server.wm.WindowStateAnimator.destroySurface:2014 com.android.server.wm.WindowStateAnimator.destroySurfaceLocked:881 com.android.server.wm.WindowState.destroyOrSaveSurface:2073 com.android.server.wm.AppWindowToken.destroySurfaces:363 com.android.server.wm.WindowStateAnimator.finishExit:565 com.android.server.wm.WindowStateAnimator.stepAnimationLocked:491 com.android.server.wm.WindowAnimator.updateWindowsLocked:303 com.android.server.wm.WindowAnimator.animateLocked:704 
+10-07 11:34:08.273  1765  1765 V PhoneStatusBar: setLightsOn(true)
+10-07 11:34:08.274  1765  1765 V PhoneStatusBar: setLightsOn(true)
+10-07 11:34:08.510  2287  2620 W MediaScanner: forcing rescan of /system/media/audio/notifications/OnTheHunt.oggsince ringtone setting didn't finish
+10-07 11:34:08.514  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications; assuming invalid
+10-07 11:34:08.519  2287  2620 W MediaProvider: Missing volume for /system/media/audio/alarms/Alarm_Rooster_02.ogg; assuming invalid
+10-07 11:34:08.521  2287  2620 W MediaProvider: Missing volume for /system/media/audio/alarms/Argon.ogg; assuming invalid
+10-07 11:34:08.523  2287  2620 W MediaProvider: Missing volume for /system/media/audio/alarms/Barium.ogg; assuming invalid
+10-07 11:34:08.525  2287  2620 W MediaProvider: Missing volume for /system/media/audio/alarms/Carbon.ogg; assuming invalid
+10-07 11:34:08.526  2287  2620 W MediaProvider: Missing volume for /system/media/audio/alarms/Cesium.ogg; assuming invalid
+10-07 11:34:08.527  2287  2620 W MediaProvider: Missing volume for /system/media/audio/alarms/Fermium.ogg; assuming invalid
+10-07 11:34:08.529  2287  2620 W MediaProvider: Missing volume for /system/media/audio/alarms/Hassium.ogg; assuming invalid
+10-07 11:34:08.530  2287  2620 W MediaProvider: Missing volume for /system/media/audio/alarms/Helium.ogg; assuming invalid
+10-07 11:34:08.531  2287  2620 W MediaProvider: Missing volume for /system/media/audio/alarms/Krypton.ogg; assuming invalid
+10-07 11:34:08.532  2287  2620 W MediaProvider: Missing volume for /system/media/audio/alarms/Neon.ogg; assuming invalid
+10-07 11:34:08.533  2287  2620 W MediaProvider: Missing volume for /system/media/audio/alarms/Neptunium.ogg; assuming invalid
+10-07 11:34:08.534  2287  2620 W MediaProvider: Missing volume for /system/media/audio/alarms/Nobelium.ogg; assuming invalid
+10-07 11:34:08.538  2287  2620 W MediaProvider: Missing volume for /system/media/audio/alarms/Osmium.ogg; assuming invalid
+10-07 11:34:08.539  2287  2620 W MediaProvider: Missing volume for /system/media/audio/alarms/Oxygen.ogg; assuming invalid
+10-07 11:34:08.541  2287  2620 W MediaProvider: Missing volume for /system/media/audio/alarms/Platinum.ogg; assuming invalid
+10-07 11:34:08.542  2287  2620 W MediaProvider: Missing volume for /system/media/audio/alarms/Plutonium.ogg; assuming invalid
+10-07 11:34:08.543  2287  2620 W MediaProvider: Missing volume for /system/media/audio/alarms/Promethium.ogg; assuming invalid
+10-07 11:34:08.545  2287  2620 W MediaProvider: Missing volume for /system/media/audio/alarms/Scandium.ogg; assuming invalid
+10-07 11:34:08.547  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Adara.ogg; assuming invalid
+10-07 11:34:08.548  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Aldebaran.ogg; assuming invalid
+10-07 11:34:08.548  1330  1350 E MetadataRetrieverClient: failed to extract an album art
+10-07 11:34:08.549  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Altair.ogg; assuming invalid
+10-07 11:34:08.550  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Alya.ogg; assuming invalid
+10-07 11:34:08.552  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Antares.ogg; assuming invalid
+10-07 11:34:08.553  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Antimony.ogg; assuming invalid
+10-07 11:34:08.555  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Arcturus.ogg; assuming invalid
+10-07 11:34:08.556  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Argon.ogg; assuming invalid
+10-07 11:34:08.558  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Beat_Box_Android.ogg; assuming invalid
+10-07 11:34:08.559  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Bellatrix.ogg; assuming invalid
+10-07 11:34:08.561  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Beryllium.ogg; assuming invalid
+10-07 11:34:08.562  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Betelgeuse.ogg; assuming invalid
+10-07 11:34:08.564  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/CaffeineSnake.ogg; assuming invalid
+10-07 11:34:08.565  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Canopus.ogg; assuming invalid
+10-07 11:34:08.566  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Capella.ogg; assuming invalid
+10-07 11:34:08.567  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Castor.ogg; assuming invalid
+10-07 11:34:08.569  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/CetiAlpha.ogg; assuming invalid
+10-07 11:34:08.570  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Cobalt.ogg; assuming invalid
+10-07 11:34:08.572  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Cricket.ogg; assuming invalid
+10-07 11:34:08.573  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/DearDeer.ogg; assuming invalid
+10-07 11:34:08.574  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Deneb.ogg; assuming invalid
+10-07 11:34:08.575  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Doink.ogg; assuming invalid
+10-07 11:34:08.576  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/DontPanic.ogg; assuming invalid
+10-07 11:34:08.577  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Drip.ogg; assuming invalid
+10-07 11:34:08.579  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Electra.ogg; assuming invalid
+10-07 11:34:08.580  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/F1_MissedCall.ogg; assuming invalid
+10-07 11:34:08.581  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/F1_New_MMS.ogg; assuming invalid
+10-07 11:34:08.583  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/F1_New_SMS.ogg; assuming invalid
+10-07 11:34:08.584  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Fluorine.ogg; assuming invalid
+10-07 11:34:08.585  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Fomalhaut.ogg; assuming invalid
+10-07 11:34:08.587  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Gallium.ogg; assuming invalid
+10-07 11:34:08.588  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Heaven.ogg; assuming invalid
+10-07 11:34:08.590  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Helium.ogg; assuming invalid
+10-07 11:34:08.591  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Highwire.ogg; assuming invalid
+10-07 11:34:08.592  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Hojus.ogg; assuming invalid
+10-07 11:34:08.594  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Iridium.ogg; assuming invalid
+10-07 11:34:08.595  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Krypton.ogg; assuming invalid
+10-07 11:34:08.596  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/KzurbSonar.ogg; assuming invalid
+10-07 11:34:08.598  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Lalande.ogg; assuming invalid
+10-07 11:34:08.599  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Merope.ogg; assuming invalid
+10-07 11:34:08.601  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Mira.ogg; assuming invalid
+10-07 11:34:08.603  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/OnTheHunt.ogg; assuming invalid
+10-07 11:34:08.921  2662  2667 I art     : Do partial code cache collection, code=30KB, data=17KB
+10-07 11:34:08.929  2662  2667 I art     : After code cache collection, code=24KB, data=13KB
+10-07 11:34:08.929  2662  2667 I art     : Increasing code cache capacity to 128KB
+10-07 11:34:08.979  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones; assuming invalid
+10-07 11:34:08.982  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Palladium.ogg; assuming invalid
+10-07 11:34:08.983  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Plastic_Pipe.ogg; assuming invalid
+10-07 11:34:08.984  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Polaris.ogg; assuming invalid
+10-07 11:34:08.987  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Pollux.ogg; assuming invalid
+10-07 11:34:08.989  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Procyon.ogg; assuming invalid
+10-07 11:34:08.990  1330  1330 E MetadataRetrieverClient: failed to extract an album art
+10-07 11:34:08.990  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Proxima.ogg; assuming invalid
+10-07 11:34:08.991  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Radon.ogg; assuming invalid
+10-07 11:34:08.992  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Rubidium.ogg; assuming invalid
+10-07 11:34:08.995  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Selenium.ogg; assuming invalid
+10-07 11:34:08.996  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Shaula.ogg; assuming invalid
+10-07 11:34:08.997  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Sirrah.ogg; assuming invalid
+10-07 11:34:08.998  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/SpaceSeed.ogg; assuming invalid
+10-07 11:34:08.999  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Spica.ogg; assuming invalid
+10-07 11:34:08.999  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Strontium.ogg; assuming invalid
+10-07 11:34:09.000  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Syrma.ogg; assuming invalid
+10-07 11:34:09.001  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/TaDa.ogg; assuming invalid
+10-07 11:34:09.003  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Talitha.ogg; assuming invalid
+10-07 11:34:09.005  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Tejat.ogg; assuming invalid
+10-07 11:34:09.008  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Thallium.ogg; assuming invalid
+10-07 11:34:09.010  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Tinkerbell.ogg; assuming invalid
+10-07 11:34:09.011  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Upsilon.ogg; assuming invalid
+10-07 11:34:09.011  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Vega.ogg; assuming invalid
+10-07 11:34:09.012  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Voila.ogg; assuming invalid
+10-07 11:34:09.017  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Xenon.ogg; assuming invalid
+10-07 11:34:09.018  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/Zirconium.ogg; assuming invalid
+10-07 11:34:09.022  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/arcturus.ogg; assuming invalid
+10-07 11:34:09.025  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/moonbeam.ogg; assuming invalid
+10-07 11:34:09.026  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/pixiedust.ogg; assuming invalid
+10-07 11:34:09.027  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/pizzicato.ogg; assuming invalid
+10-07 11:34:09.028  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/regulus.ogg; assuming invalid
+10-07 11:34:09.029  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/sirius.ogg; assuming invalid
+10-07 11:34:09.030  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/tweeters.ogg; assuming invalid
+10-07 11:34:09.030  2287  2620 W MediaProvider: Missing volume for /system/media/audio/notifications/vega.ogg; assuming invalid
+10-07 11:34:09.033  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/ANDROMEDA.ogg; assuming invalid
+10-07 11:34:09.039  1330  1350 E MetadataRetrieverClient: failed to extract an album art
+10-07 11:34:09.904  1617  2677 D DhcpClient: Broadcasting DHCPDISCOVER
+10-07 11:34:10.155  1608  1608 I dnsmasq : DHCPDISCOVER(wlan1) 02:00:00:44:55:66 
+10-07 11:34:10.155  1608  1608 I dnsmasq : DHCPOFFER(wlan1) 192.168.100.188 02:00:00:44:55:66 
+10-07 11:34:10.155  1608  1608 I dnsmasq : DHCPDISCOVER(wlan1) 02:00:00:44:55:66 
+10-07 11:34:10.155  1608  1608 I dnsmasq : DHCPOFFER(wlan1) 192.168.100.188 02:00:00:44:55:66 
+10-07 11:34:10.155  1617  2679 D DhcpClient: Received packet: 02:00:00:44:55:66 OFFER, ip /192.168.100.188, mask /255.255.255.0, DNS servers: /10.0.2.3 , gateways [/192.168.100.1] lease time 14400, domain null
+10-07 11:34:10.155  1617  2679 D DhcpClient: Received packet: 02:00:00:44:55:66 OFFER, ip /192.168.100.188, mask /255.255.255.0, DNS servers: /10.0.2.3 , gateways [/192.168.100.1] lease time 14400, domain null
+10-07 11:34:10.160  1617  2677 D DhcpClient: Got pending lease: IP address 192.168.100.188/24 Gateway 192.168.100.1  DNS servers: [ 10.0.2.3 ] Domains  DHCP server /192.168.100.1 Vendor info null lease 14400 seconds
+10-07 11:34:10.160  1617  2677 D DhcpClient: Broadcasting DHCPREQUEST ciaddr=0.0.0.0 request=192.168.100.188 serverid=192.168.100.1
+10-07 11:34:10.161  1608  1608 I dnsmasq : DHCPREQUEST(wlan1) 192.168.100.188 02:00:00:44:55:66 
+10-07 11:34:10.161  1608  1608 I dnsmasq : DHCPACK(wlan1) 192.168.100.188 02:00:00:44:55:66 android-e2998592639bd0
+10-07 11:34:10.162  1617  2679 D DhcpClient: Received packet: 02:00:00:44:55:66 ACK: your new IP /192.168.100.188, netmask /255.255.255.0, gateways [/192.168.100.1] DNS servers: /10.0.2.3 , lease time 14400
+10-07 11:34:10.162  1617  2677 D DhcpClient: Confirmed lease: IP address 192.168.100.188/24 Gateway 192.168.100.1  DNS servers: [ 10.0.2.3 ] Domains  DHCP server /192.168.100.1 Vendor info null lease 14400 seconds
+10-07 11:34:10.163  1331  1591 D CommandListener: Setting iface cfg
+10-07 11:34:10.165  1617  2677 D DhcpClient: Scheduling renewal in 7199s
+10-07 11:34:10.165  1617  2677 D DhcpClient: Scheduling rebind in 12599s
+10-07 11:34:10.165  1617  1689 E WifiNative-HAL: setBssidBlacklist cmd 0 size 0
+10-07 11:34:10.165  1617  2677 D DhcpClient: Scheduling expiry in 14399s
+10-07 11:34:10.165  1617  1693 D ConnectivityService: NetworkAgentInfo [WIFI () - 101] EVENT_NETWORK_INFO_CHANGED, going from CONNECTING to CONNECTED
+10-07 11:34:10.166  1617  1693 D ConnectivityService: Adding iface wlan0 to network 101
+10-07 11:34:10.170  1617  1689 E WifiStateMachine: Did not find remoteAddress {192.168.100.1} in /proc/net/arp
+10-07 11:34:10.170  1617  1689 E WifiStateMachine: Did not find remoteAddress {192.168.100.1} in /proc/net/arp
+10-07 11:34:10.171  1617  1689 W AlarmManager: Unrecognized alarm listener com.android.server.wifi.WifiConnectivityManager$3@6a2b837
+10-07 11:34:10.171  1617  1689 E WifiScanner: listener cannot be found
+10-07 11:34:10.178  1331  1591 E Netd    : netlink response contains error (File exists)
+10-07 11:34:10.179  1617  1693 D ConnectivityService: Setting DNS servers for network 101 to [/10.0.2.3]
+10-07 11:34:10.205  1617  1708 I GnssLocationProvider: WakeLock acquired by sendMessage(5, 0, null)
+10-07 11:34:10.205  1617  1708 I GnssLocationProvider: WakeLock acquired by sendMessage(6, 0, null)
+10-07 11:34:10.205  1617  1630 I GnssLocationProvider: WakeLock acquired by handleInjectNtpTime()
+10-07 11:34:10.205  1617  1630 I GnssLocationProvider: WakeLock released by handleMessage(5, 0, null)
+10-07 11:34:10.206  1617  1630 I GnssLocationProvider: WakeLock released by handleMessage(6, 0, null)
+10-07 11:34:10.206  1617  1899 I GnssLocationProvider: WakeLock acquired by sendMessage(10, 0, null)
+10-07 11:34:10.206  1617  1899 I GnssLocationProvider: WakeLock released by handleInjectNtpTime()
+10-07 11:34:10.206  1617  1630 I GnssLocationProvider: WakeLock released by handleMessage(10, 0, null)
+10-07 11:34:10.209  1617  1689 D WifiNetworkAgent: NetworkAgent: Received signal strength thresholds: []
+10-07 11:34:10.209  1617  1689 D WifiNative-HAL: stopRssiMonitoring, cmdId 0
+10-07 11:34:10.226  1617  1693 D ConnectivityService: NetworkAgentInfo [WIFI () - 101] validation passed
+10-07 11:34:10.226  1617  1693 D ConnectivityService: Switching to new default network: NetworkAgentInfo{ ni{[type: WIFI[], state: CONNECTED/CONNECTED, reason: (unspecified), extra: "AndroidWifi", failover: false, available: true, roaming: false, metered: false]}  network{101}  nethandle{433808132830}  lp{{InterfaceName: wlan0 LinkAddresses: [fe80::ff:fe44:5566/64,fec0::ff:fe44:5566/64,fec0::6566:6204:1256:9500/64,192.168.100.188/24,]  Routes: [fe80::/64 -> :: wlan0,::/0 -> fe80::ff:fe00:100 wlan0,fec0::/64 -> :: wlan0,192.168.100.0/24 -> 0.0.0.0 wlan0,0.0.0.0/0 -> 192.168.100.1 wlan0,] DnsAddresses: [10.0.2.3,] Domains: null MTU: 0 TcpBufferSizes: 524288,1048576,2097152,262144,524288,1048576}}  nc{[ Transports: WIFI Capabilities: NOT_METERED&INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VPN&VALIDATED LinkUpBandwidth>=1048576Kbps LinkDnBandwidth>=1048576Kbps SignalStrength: -50]}  Score{57}  everValidated{true}  lastValidated{true}  created{true} lingering{false} explicitlySelected{false} acceptUnvalidated{false} everCaptivePortalDetected{false} lastCaptivePortalDetected{false} }
+10-07 11:34:10.231  1331  1591 V IdletimerController: runCmd(/system/bin/ip6tables -w -t raw -A idletimer_raw_PREROUTING -i wlan0 -j IDLETIMER --timeout 15 --label 1 --send_nl_msg 1) res_ipv4=0, res_ipv6=0
+10-07 11:34:10.235  1331  1591 V IdletimerController: runCmd(/system/bin/ip6tables -w -t mangle -A idletimer_mangle_POSTROUTING -o wlan0 -j IDLETIMER --timeout 15 --label 1 --send_nl_msg 1) res_ipv4=0, res_ipv6=0
+10-07 11:34:10.236  1617  1693 D ConnectivityService: Sending DISCONNECTED broadcast for type 0 NetworkAgentInfo [MOBILE (LTE) - 100] isDefaultNetwork=true
+10-07 11:34:10.238  1617  1693 D ConnectivityService: Sending CONNECTED broadcast for type 1 NetworkAgentInfo [WIFI () - 101] isDefaultNetwork=true
+10-07 11:34:10.242  1617  2697 D WifiNetworkHistory: saving network history: "AndroidWifi"NONE gw: null Network Selection-status: NETWORK_SELECTION_ENABLED ephemeral=false choice:null link:0 status:0 nid:0 hasEverConnected: true
+10-07 11:34:10.242  1617  2697 V WifiNetworkHistory: writeKnownNetworkHistory write config "AndroidWifi"NONE
+10-07 11:34:10.351  2287  2620 W MediaScanner: Error opening directory '/oem/media/', skipping: No such file or directory.
+10-07 11:34:10.355  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ui; assuming invalid
+10-07 11:34:10.359  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Andromeda.ogg; assuming invalid
+10-07 11:34:10.360  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Aquila.ogg; assuming invalid
+10-07 11:34:10.362  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/ArgoNavis.ogg; assuming invalid
+10-07 11:34:10.362  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Atria.ogg; assuming invalid
+10-07 11:34:10.363  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/BOOTES.ogg; assuming invalid
+10-07 11:34:10.364  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Backroad.ogg; assuming invalid
+10-07 11:34:10.366  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/BeatPlucker.ogg; assuming invalid
+10-07 11:34:10.367  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/BentleyDubs.ogg; assuming invalid
+10-07 11:34:10.367  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Big_Easy.ogg; assuming invalid
+10-07 11:34:10.368  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/BirdLoop.ogg; assuming invalid
+10-07 11:34:10.371  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Bollywood.ogg; assuming invalid
+10-07 11:34:10.371  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/BussaMove.ogg; assuming invalid
+10-07 11:34:10.372  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/CANISMAJOR.ogg; assuming invalid
+10-07 11:34:10.373  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/CASSIOPEIA.ogg; assuming invalid
+10-07 11:34:10.373  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Cairo.ogg; assuming invalid
+10-07 11:34:10.374  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Calypso_Steel.ogg; assuming invalid
+10-07 11:34:10.376  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/CanisMajor.ogg; assuming invalid
+10-07 11:34:10.377  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/CaribbeanIce.ogg; assuming invalid
+10-07 11:34:10.379  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Carina.ogg; assuming invalid
+10-07 11:34:10.380  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Centaurus.ogg; assuming invalid
+10-07 11:34:10.381  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Champagne_Edition.ogg; assuming invalid
+10-07 11:34:10.381  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Club_Cubano.ogg; assuming invalid
+10-07 11:34:10.382  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/CrayonRock.ogg; assuming invalid
+10-07 11:34:10.382  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/CrazyDream.ogg; assuming invalid
+10-07 11:34:10.383  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/CurveBall.ogg; assuming invalid
+10-07 11:34:10.386  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Cygnus.ogg; assuming invalid
+10-07 11:34:10.388  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/DancinFool.ogg; assuming invalid
+10-07 11:34:10.388  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Ding.ogg; assuming invalid
+10-07 11:34:10.389  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/DonMessWivIt.ogg; assuming invalid
+10-07 11:34:10.390  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Draco.ogg; assuming invalid
+10-07 11:34:10.391  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/DreamTheme.ogg; assuming invalid
+10-07 11:34:10.393  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Eastern_Sky.ogg; assuming invalid
+10-07 11:34:10.394  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Enter_the_Nexus.ogg; assuming invalid
+10-07 11:34:10.394  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Eridani.ogg; assuming invalid
+10-07 11:34:10.395  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/EtherShake.ogg; assuming invalid
+10-07 11:34:10.396  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/FreeFlight.ogg; assuming invalid
+10-07 11:34:10.397  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/FriendlyGhost.ogg; assuming invalid
+10-07 11:34:10.397  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Funk_Yall.ogg; assuming invalid
+10-07 11:34:10.398  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/GameOverGuitar.ogg; assuming invalid
+10-07 11:34:10.399  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Gimme_Mo_Town.ogg; assuming invalid
+10-07 11:34:10.400  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Girtab.ogg; assuming invalid
+10-07 11:34:10.401  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Glacial_Groove.ogg; assuming invalid
+10-07 11:34:10.402  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Growl.ogg; assuming invalid
+10-07 11:34:10.402  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/HalfwayHome.ogg; assuming invalid
+10-07 11:34:10.404  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Hydra.ogg; assuming invalid
+10-07 11:34:10.405  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/InsertCoin.ogg; assuming invalid
+10-07 11:34:10.406  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Kuma.ogg; assuming invalid
+10-07 11:34:10.407  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/LoopyLounge.ogg; assuming invalid
+10-07 11:34:10.409  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/LoveFlute.ogg; assuming invalid
+10-07 11:34:10.410  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Lyra.ogg; assuming invalid
+10-07 11:34:10.411  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Machina.ogg; assuming invalid
+10-07 11:34:10.412  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/MidEvilJaunt.ogg; assuming invalid
+10-07 11:34:10.413  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/MildlyAlarming.ogg; assuming invalid
+10-07 11:34:10.413  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Nairobi.ogg; assuming invalid
+10-07 11:34:10.414  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Nassau.ogg; assuming invalid
+10-07 11:34:10.415  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/NewPlayer.ogg; assuming invalid
+10-07 11:34:10.416  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/No_Limits.ogg; assuming invalid
+10-07 11:34:10.417  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Noises1.ogg; assuming invalid
+10-07 11:34:10.417  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Noises2.ogg; assuming invalid
+10-07 11:34:10.418  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Noises3.ogg; assuming invalid
+10-07 11:34:10.420  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/OrganDub.ogg; assuming invalid
+10-07 11:34:10.421  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Orion.ogg; assuming invalid
+10-07 11:34:10.422  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/PERSEUS.ogg; assuming invalid
+10-07 11:34:10.423  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Paradise_Island.ogg; assuming invalid
+10-07 11:34:10.427  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Pegasus.ogg; assuming invalid
+10-07 11:34:10.428  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Perseus.ogg; assuming invalid
+10-07 11:34:10.428  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Playa.ogg; assuming invalid
+10-07 11:34:10.429  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Pyxis.ogg; assuming invalid
+10-07 11:34:10.432  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Rasalas.ogg; assuming invalid
+10-07 11:34:10.433  1330  1330 E MetadataRetrieverClient: failed to extract an album art
+10-07 11:34:10.433  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Revelation.ogg; assuming invalid
+10-07 11:34:10.439  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Rigel.ogg; assuming invalid
+10-07 11:34:10.442  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Ring_Classic_02.ogg; assuming invalid
+10-07 11:34:10.443  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Ring_Digital_02.ogg; assuming invalid
+10-07 11:34:10.447  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Ring_Synth_02.ogg; assuming invalid
+10-07 11:34:10.448  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Ring_Synth_04.ogg; assuming invalid
+10-07 11:34:10.449  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Road_Trip.ogg; assuming invalid
+10-07 11:34:10.450  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/RomancingTheTone.ogg; assuming invalid
+10-07 11:34:10.451  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Safari.ogg; assuming invalid
+10-07 11:34:10.451  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Savannah.ogg; assuming invalid
+10-07 11:34:10.453  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Scarabaeus.ogg; assuming invalid
+10-07 11:34:10.455  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Sceptrum.ogg; assuming invalid
+10-07 11:34:10.456  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Seville.ogg; assuming invalid
+10-07 11:34:10.458  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Shes_All_That.ogg; assuming invalid
+10-07 11:34:10.460  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/SilkyWay.ogg; assuming invalid
+10-07 11:34:10.461  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/SitarVsSitar.ogg; assuming invalid
+10-07 11:34:10.462  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Solarium.ogg; assuming invalid
+10-07 11:34:10.463  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/SpringyJalopy.ogg; assuming invalid
+10-07 11:34:10.464  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Steppin_Out.ogg; assuming invalid
+10-07 11:34:10.464  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Terminated.ogg; assuming invalid
+10-07 11:34:10.466  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Testudo.ogg; assuming invalid
+10-07 11:34:10.467  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Themos.ogg; assuming invalid
+10-07 11:34:10.468  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Third_Eye.ogg; assuming invalid
+10-07 11:34:10.469  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Thunderfoot.ogg; assuming invalid
+10-07 11:34:10.470  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/TwirlAway.ogg; assuming invalid
+10-07 11:34:10.471  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/URSAMINOR.ogg; assuming invalid
+10-07 11:34:10.472  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/UrsaMinor.ogg; assuming invalid
+10-07 11:34:10.473  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/VeryAlarmed.ogg; assuming invalid
+10-07 11:34:10.475  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Vespa.ogg; assuming invalid
+10-07 11:34:10.477  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/World.ogg; assuming invalid
+10-07 11:34:10.478  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/Zeta.ogg; assuming invalid
+10-07 11:34:10.479  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ringtones/hydra.ogg; assuming invalid
+10-07 11:34:10.480  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ui/Dock.ogg; assuming invalid
+10-07 11:34:10.481  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ui/Effect_Tick.ogg; assuming invalid
+10-07 11:34:10.481  1330  1790 E MetadataRetrieverClient: failed to extract an album art
+10-07 11:34:10.483  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ui/KeypressDelete.ogg; assuming invalid
+10-07 11:34:10.484  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ui/KeypressInvalid.ogg; assuming invalid
+10-07 11:34:10.485  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ui/KeypressReturn.ogg; assuming invalid
+10-07 11:34:10.486  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ui/KeypressSpacebar.ogg; assuming invalid
+10-07 11:34:10.487  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ui/KeypressStandard.ogg; assuming invalid
+10-07 11:34:10.489  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ui/Lock.ogg; assuming invalid
+10-07 11:34:10.490  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ui/LowBattery.ogg; assuming invalid
+10-07 11:34:10.491  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ui/Trusted.ogg; assuming invalid
+10-07 11:34:10.493  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ui/Undock.ogg; assuming invalid
+10-07 11:34:10.495  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ui/Unlock.ogg; assuming invalid
+10-07 11:34:10.495  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ui/VideoRecord.ogg; assuming invalid
+10-07 11:34:10.496  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ui/VideoStop.ogg; assuming invalid
+10-07 11:34:10.500  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ui/WirelessChargingStarted.ogg; assuming invalid
+10-07 11:34:10.500  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ui/camera_click.ogg; assuming invalid
+10-07 11:34:10.502  2287  2620 W MediaProvider: Missing volume for /system/media/audio/ui/camera_focus.ogg; assuming invalid
+10-07 11:34:10.533  2287  2620 V MediaScanner: pruneDeadThumbnailFiles... android.content.ContentProviderClient$CursorWrapperInner@c0f7d14
+10-07 11:34:10.533  2287  2620 V MediaScanner: /pruneDeadThumbnailFiles... android.content.ContentProviderClient$CursorWrapperInner@c0f7d14
+10-07 11:34:10.799  1617  1712 E TaskPersister: File error accessing recents directory (directory doesn't exist?).
+10-07 11:34:12.659  2496  2631 I GlobalDismissManager: no sender configured
+10-07 11:34:12.659  2496  2631 D AlertService: Beginning updateAlertNotification
+10-07 11:34:12.664  2496  2631 D AlertService: No fired or scheduled alerts
+10-07 11:34:12.670  2496  2631 D AlertService: Scheduling next alarm with AlarmScheduler. sEventReminderReceived: null
+10-07 11:34:12.673  2496  2631 D AlarmScheduler: No events found starting within 1 week.
+10-07 11:34:13.660  1617  1655 I InputReader: Reconfiguring input devices.  changes=0x00000010
+10-07 11:34:13.660  1617  1655 I InputReader: Reconfiguring input devices.  changes=0x00000010
+10-07 11:34:13.661  1617  1655 I InputReader: Reconfiguring input devices.  changes=0x00000010
+10-07 11:34:13.661  1617  1655 I InputReader: Reconfiguring input devices.  changes=0x00000010
+10-07 11:34:13.662  1617  1655 I InputReader: Reconfiguring input devices.  changes=0x00000010
+10-07 11:34:13.662  1617  1655 I InputReader: Reconfiguring input devices.  changes=0x00000010
+10-07 11:34:13.663  1617  1655 I InputReader: Reconfiguring input devices.  changes=0x00000010
+10-07 11:34:13.666  1859  1859 D CarrierSvcBindHelper: No carrier app for: 0
+10-07 11:34:13.669  1859  1859 D CarrierSvcBindHelper: No carrier app for: 0
+10-07 11:34:13.675  1859  1859 D CarrierSvcBindHelper: No carrier app for: 0
+10-07 11:34:13.683  1859  1859 D CarrierSvcBindHelper: No carrier app for: 0
+10-07 11:34:13.699  1859  1859 D CarrierSvcBindHelper: No carrier app for: 0
+10-07 11:34:13.703  1859  1859 D CarrierSvcBindHelper: No carrier app for: 0
+10-07 11:34:13.712  1859  1859 D CarrierSvcBindHelper: No carrier app for: 0
+10-07 11:34:13.721  1617  1630 W LocationProviderProxy-network: Odd, no component found for service com.android.location.service.v3.NetworkLocationProvider
+10-07 11:34:13.721  1617  1630 W GeocoderProxy: Odd, no component found for service com.android.location.service.GeocodeProvider
+10-07 11:34:13.721  1617  1630 W GeofenceProxy: Odd, no component found for service com.android.location.service.GeofenceProvider
+10-07 11:34:13.721  1617  1630 W ActivityRecognitionProxy: Odd, no component found for service com.android.location.service.ActivityRecognitionProvider
+10-07 11:34:13.731  1617  1630 W LocationProviderProxy-network: Odd, no component found for service com.android.location.service.v3.NetworkLocationProvider
+10-07 11:34:13.731  1617  1630 W GeocoderProxy: Odd, no component found for service com.android.location.service.GeocodeProvider
+10-07 11:34:13.731  1617  1630 W GeofenceProxy: Odd, no component found for service com.android.location.service.GeofenceProvider
+10-07 11:34:13.731  1617  1630 W ActivityRecognitionProxy: Odd, no component found for service com.android.location.service.ActivityRecognitionProvider
+10-07 11:34:13.733  1617  1630 W LocationProviderProxy-network: Odd, no component found for service com.android.location.service.v3.NetworkLocationProvider
+10-07 11:34:13.733  1617  1630 W GeocoderProxy: Odd, no component found for service com.android.location.service.GeocodeProvider
+10-07 11:34:13.733  1617  1630 W GeofenceProxy: Odd, no component found for service com.android.location.service.GeofenceProvider
+10-07 11:34:13.733  1617  1630 W ActivityRecognitionProxy: Odd, no component found for service com.android.location.service.ActivityRecognitionProvider
+10-07 11:34:13.735  1617  1630 W LocationProviderProxy-network: Odd, no component found for service com.android.location.service.v3.NetworkLocationProvider
+10-07 11:34:13.735  1617  1630 W GeocoderProxy: Odd, no component found for service com.android.location.service.GeocodeProvider
+10-07 11:34:13.735  1617  1630 W GeofenceProxy: Odd, no component found for service com.android.location.service.GeofenceProvider
+10-07 11:34:13.735  1617  1630 W ActivityRecognitionProxy: Odd, no component found for service com.android.location.service.ActivityRecognitionProvider
+10-07 11:34:13.739  1617  1630 W LocationProviderProxy-network: Odd, no component found for service com.android.location.service.v3.NetworkLocationProvider
+10-07 11:34:13.739  1617  1630 W GeocoderProxy: Odd, no component found for service com.android.location.service.GeocodeProvider
+10-07 11:34:13.739  1617  1630 W GeofenceProxy: Odd, no component found for service com.android.location.service.GeofenceProvider
+10-07 11:34:13.739  1617  1630 W ActivityRecognitionProxy: Odd, no component found for service com.android.location.service.ActivityRecognitionProvider
+10-07 11:34:13.741  1617  1630 W LocationProviderProxy-network: Odd, no component found for service com.android.location.service.v3.NetworkLocationProvider
+10-07 11:34:13.741  1617  1630 W GeocoderProxy: Odd, no component found for service com.android.location.service.GeocodeProvider
+10-07 11:34:13.741  1617  1630 W GeofenceProxy: Odd, no component found for service com.android.location.service.GeofenceProvider
+10-07 11:34:13.741  1617  1630 W ActivityRecognitionProxy: Odd, no component found for service com.android.location.service.ActivityRecognitionProvider
+10-07 11:34:13.742  1617  1630 W LocationProviderProxy-network: Odd, no component found for service com.android.location.service.v3.NetworkLocationProvider
+10-07 11:34:13.742  1617  1630 W GeocoderProxy: Odd, no component found for service com.android.location.service.GeocodeProvider
+10-07 11:34:13.742  1617  1630 W GeofenceProxy: Odd, no component found for service com.android.location.service.GeofenceProvider
+10-07 11:34:13.742  1617  1630 W ActivityRecognitionProxy: Odd, no component found for service com.android.location.service.ActivityRecognitionProvider
+10-07 11:34:13.782  1617  1831 W BackupManagerService: dataChanged but no participant pkg='com.android.launcher3' uid=10014
+10-07 11:34:13.816  1617  1830 W BackupManagerService: dataChanged but no participant pkg='com.android.launcher3' uid=10014
+10-07 11:34:13.895  1617  2042 W BackupManagerService: dataChanged but no participant pkg='com.android.launcher3' uid=10014
+10-07 11:34:13.932  1617  1830 W BackupManagerService: dataChanged but no participant pkg='com.android.launcher3' uid=10014
+10-07 11:34:18.730  1617  1628 I ActivityManager: Killing 1870:com.android.settings:CryptKeeper/1000 (adj 906): empty #17
+10-07 11:34:18.769  1617  2044 D ActivityManager: cleanUpApplicationRecord -- 1870
+10-07 11:34:22.129  1617  1631 I ActivityManager: Waited long enough for: ServiceRecord{fead70f u0 com.android.calendar/.alerts.InitAlarmsService}
+10-07 11:34:24.226  1617  1629 D AlarmManagerService: Kernel timezone updated to 0 minutes west of GMT
+10-07 11:34:24.227  1617  1628 D AlarmManagerService: Setting time of day to sec=1791372865
+10-07 11:34:25.002  1617  1628 W AlarmManagerService: Unable to set rtc to 1791372865: No such device
+10-07 11:34:25.005  1617  1617 D ConditionProviders.SCP: onReceive android.intent.action.TIME_SET
+10-07 11:34:25.005  1617  1617 D ConditionProviders.SCP: notifyCondition condition://android/schedule?days=6.7&start=23.30&end=10.0&exitAtAlarm=false STATE_FALSE reason=!meetsSchedule
+10-07 11:34:25.005  1617  1617 D ConditionProviders.SCP: notifyCondition condition://android/schedule?days=1.2.3.4.5&start=22.0&end=7.0&exitAtAlarm=false STATE_FALSE reason=!meetsSchedule
+10-07 11:34:25.006  1617  1617 D ConditionProviders.SCP: Scheduling evaluate for Wed Oct 07 22:00:00 UTC 2026 (1791410400000), in +10h25m34s995ms, now=Wed Oct 07 11:34:25 UTC 2026 (1791372865005)
+10-07 11:34:25.015  2662  2673 I art     : Background partial concurrent mark sweep GC freed 27498(1222KB) AllocSpace objects, 1(20KB) LOS objects, 40% free, 2MB/3MB, paused 8.996ms total 19.492ms
+10-07 11:34:25.016  2064  2064 I AlarmClock: AlarmInitReceiver android.intent.action.TIME_SET
+10-07 11:34:25.026  2064  2082 V AlarmClock: AlarmInitReceiver finished
+10-07 11:34:30.010  1617  1631 I ActivityManager: Killing 2165:com.android.keychain/1000 (adj 906): empty #17
+10-07 11:34:30.010  1617  1631 I ActivityManager: Killing 2198:com.android.sdksetup/u0a18 (adj 906): empty #18
+10-07 11:34:30.013  1617  2044 D ActivityManager: cleanUpApplicationRecord -- 2198
+10-07 11:34:30.055  1617  1628 D ActivityManager: cleanUpApplicationRecord -- 2165
+10-07 11:34:33.620  1304  2122 E SurfaceFlinger: ro.sf.lcd_density must be defined as a build property
+10-07 11:34:33.621  1304  2122 D PermissionCache: checking android.permission.READ_FRAME_BUFFER for uid=2000 => granted (261 us)
+10-07 11:34:33.621  1304  2122 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+10-07 11:34:33.623  2776  2776 D         : HostConnection::get() New Host Connection established 0x7d9bf0a2d4e0, tid 2776
+10-07 11:34:33.825  2779  2779 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-07 11:34:33.827  2779  2779 D AndroidRuntime: CheckJNI is OFF
+10-07 11:34:33.845  2779  2779 W art     : Unexpected CPU variant for X86 using defaults: x86_64
+10-07 11:34:33.848  2779  2779 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+10-07 11:34:33.857  2779  2779 E memtrack: Couldn't load memtrack module (No such file or directory)
+10-07 11:34:33.857  2779  2779 E android.os.Debug: failed to load memtrack module: -2
+10-07 11:34:33.858  2779  2779 I Radio-JNI: register_android_hardware_Radio DONE
+10-07 11:34:33.863  2779  2779 D AndroidRuntime: Calling main entry com.android.commands.am.Am
+10-07 11:34:33.866  1617  2042 I ActivityManager: START u0 {act=android.service.wallpaper.CHANGE_LIVE_WALLPAPER flg=0x10000000 cmp=com.android.wallpaper.livepicker/.LiveWallpaperChange (has extras)} from uid 2000 on display 0
+10-07 11:34:33.868  1765  1765 V PhoneStatusBar: setLightsOn(true)
+10-07 11:34:33.870  2779  2779 D AndroidRuntime: Shutting down VM
+10-07 11:34:33.871  1765  1765 V PhoneStatusBar: setLightsOn(true)
+10-07 11:34:33.883  2789  2789 W art     : Unexpected CPU variant for X86 using defaults: x86_64
+10-07 11:34:33.889  1617  1628 I ActivityManager: Start proc 2789:com.android.wallpaper.livepicker/u0a43 for activity com.android.wallpaper.livepicker/.LiveWallpaperChange
+10-07 11:34:33.912  1304  1656 D PermissionCache: checking android.permission.READ_FRAME_BUFFER for uid=1000 => granted (596 us)
+10-07 11:34:33.914  1304  1656 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 294912
+10-07 11:34:33.915  1617  1628 D         : HostConnection::get() New Host Connection established 0x70b847de3d40, tid 1628
+10-07 11:34:33.967  1304  1309 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+10-07 11:34:33.971  1765  1765 V PhoneStatusBar: setLightsOn(true)
+10-07 11:34:33.975  2789  2789 W System  : ClassLoader referenced unknown path: /system/app/LiveWallpapersPicker/lib/x86_64
+10-07 11:34:34.070  1304  1656 E SurfaceFlinger: ro.sf.lcd_density must be defined as a build property
+10-07 11:34:34.072  2789  2789 D         : HostConnection::get() New Host Connection established 0x70b86270dfc0, tid 2789
+10-07 11:34:34.095  2789  2803 D         : HostConnection::get() New Host Connection established 0x70b86270f520, tid 2803
+10-07 11:34:34.098  2789  2803 I OpenGLRenderer: Initialized EGL, version 1.4
+10-07 11:34:34.098  2789  2803 D OpenGLRenderer: Swap behavior 1
+10-07 11:34:34.100  2789  2803 D EGL_emulation: eglCreateContext: 0x70b86267c1c0: maj 3 min 0 rcv 3
+10-07 11:34:34.101  2789  2803 D EGL_emulation: eglMakeCurrent: 0x70b86267c1c0: ver 3 0 (tinfo 0x70b84c63e120)
+10-07 11:34:34.101  2789  2803 E eglCodecCommon: glUtilsParamSize: unknow param 0x00008cdf
+10-07 11:34:34.102  2789  2803 E eglCodecCommon: glUtilsParamSize: unknow param 0x00008824
+10-07 11:34:34.110  2789  2803 D EGL_emulation: eglMakeCurrent: 0x70b86267c1c0: ver 3 0 (tinfo 0x70b84c63e120)
+10-07 11:34:34.388  2789  2803 D EGL_emulation: eglMakeCurrent: 0x70b86267c1c0: ver 3 0 (tinfo 0x70b84c63e120)
+10-07 11:34:34.459  2789  2803 D EGL_emulation: eglMakeCurrent: 0x70b86267c1c0: ver 3 0 (tinfo 0x70b84c63e120)
+10-07 11:34:34.459  1617  1638 I ActivityManager: Displayed com.android.wallpaper.livepicker/.LiveWallpaperChange: +580ms
+10-07 11:34:34.479  1617  1638 I WindowManager: Destroying surface Surface(name=Starting com.android.wallpaper.livepicker) called by com.android.server.wm.WindowStateAnimator.destroySurface:2014 com.android.server.wm.WindowStateAnimator.destroySurfaceLocked:881 com.android.server.wm.WindowState.destroyOrSaveSurface:2073 com.android.server.wm.AppWindowToken.destroySurfaces:363 com.android.server.wm.WindowStateAnimator.finishExit:565 com.android.server.wm.WindowStateAnimator.stepAnimationLocked:491 com.android.server.wm.WindowAnimator.updateWindowsLocked:303 com.android.server.wm.WindowAnimator.animateLocked:704 
+10-07 11:34:34.481  2662  2806 D         : HostConnection::get() New Host Connection established 0x70b85ba12d20, tid 2806
+10-07 11:34:34.485  2662  2806 D EGL_emulation: eglCreateContext: 0x70b85ba4a360: maj 3 min 0 rcv 3
+10-07 11:34:34.487  2662  2806 D EGL_emulation: eglMakeCurrent: 0x70b85ba4a360: ver 3 0 (tinfo 0x70b85bad7bc0)
+10-07 11:34:34.487  2662  2806 E eglCodecCommon: glUtilsParamSize: unknow param 0x00008cdf
+10-07 11:34:34.487  2662  2806 E eglCodecCommon: glUtilsParamSize: unknow param 0x00008824
+10-07 11:34:34.490  2662  2806 I Football: GL context created
+10-07 11:34:34.490  2662  2806 I Football: surface 320x640
+10-07 11:34:36.667  2662  2667 I art     : Do partial code cache collection, code=62KB, data=40KB
+10-07 11:34:36.667  2662  2667 I art     : After code cache collection, code=62KB, data=40KB
+10-07 11:34:36.667  2662  2667 I art     : Increasing code cache capacity to 256KB
+10-07 11:34:37.943  2496  2544 D InitAlarmsService: Clearing and rescheduling alarms.
+10-07 11:34:37.951  1617  2044 I ActivityManager: Killing 2227:com.android.carrierconfig/u0a3 (adj 906): empty #17
+10-07 11:34:37.994  1617  2043 D ActivityManager: cleanUpApplicationRecord -- 2227
+10-07 11:34:41.001  1617  1693 D ConnectivityService: handleLingerComplete for NetworkAgentInfo [MOBILE (LTE) - 100]
+10-07 11:34:41.001  1617  1693 D ConnectivityService: NetworkAgentInfo [MOBILE (LTE) - 100] got DISCONNECTED, was satisfying 3
+10-07 11:34:41.002  1859  2012 D DcNetworkAgent: NetworkAgent: NetworkAgent channel lost
+10-07 11:34:41.004  1617  1708 D DnsEventListenerService: Logging 3 results for netId 100
+10-07 11:34:41.005  1859  2012 D DcNetworkAgent: NetworkAgent: DcNetworkAgent: [unwanted]: disconnect apnContext={mApnType=default mState=CONNECTED mWaitingApns={[[ApnSettingV3] T-Mobile US, 1, 310260, epc.tmobile.com, , http://mms.msg.eng.t-mobile.com/mms/wapenc, , , , -1, *, IP, IP, true, 0, 0, 0, false, 0, 0, 0, 0, , , false]} mApnSetting={[ApnSettingV3] T-Mobile US, 1, 310260, epc.tmobile.com, , http://mms.msg.eng.t-mobile.com/mms/wapenc, , , , -1, *, IP, IP, true, 0, 0, 0, false, 0, 0, 0, 0, , , false} mReason=dataDisabled mDataEnabled=false mDependencyMet=true}
+10-07 11:34:41.030  1331  1591 E Netd    : netlink response contains error (No such file or directory)
+10-07 11:34:53.909  1304  2122 E SurfaceFlinger: ro.sf.lcd_density must be defined as a build property
+10-07 11:34:53.909  1304  1307 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+10-07 11:34:53.911  2822  2822 D         : HostConnection::get() New Host Connection established 0x77267b22d4e0, tid 2822
