@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Football</string>
+    <string name="wallpaper_description">A simulated football match shown as a live TV broadcast.</string>
+    <string name="set_wallpaper">Set as live wallpaper</string>
+</resources>
