@@ -94,10 +94,9 @@ jobs:
           distribution: temurin
           java-version: "17"
 
-      - uses: android-actions/setup-android@v3
-
+      # The runner image ships an Android SDK (ANDROID_HOME); android-actions/setup-android@v3 currently fails installing the obsolete "tools" package.
       - name: Install SDK platform and build tools
-        run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
+        run: yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-35" "build-tools;35.0.0" > /dev/null
 
       - uses: gradle/actions/setup-gradle@v4
         with:
@@ -134,7 +133,7 @@ jobs:
           script: bash android/ci/emulator-test.sh "dist/Football-${{ env.VERSION }}.apk" dist/android-snapshots
 
       - name: Publish emulator screenshots to the ci-snapshots-android branch
-        if: always() && github.ref != 'refs/heads/main'
+        if: always() && github.ref != 'refs/heads/main' && hashFiles('dist/android-snapshots/*') != ''
         run: |
           set -euo pipefail
           cd dist/android-snapshots
