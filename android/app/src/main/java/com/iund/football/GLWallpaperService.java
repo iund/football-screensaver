@@ -107,7 +107,7 @@ public abstract class GLWallpaperService extends WallpaperService {
                     boolean newContext = false;
                     if (display == null) { initEgl(); newContext = true; }
                     if (eglSurface == null) {
-                        if (!createSurface()) { sleep(100); continue; }
+                        if (!createSurface()) { pause(100); continue; }
                         if (newContext) renderer.onSurfaceCreated(gl, config);
                         sizeChanged = true;
                     }
@@ -116,8 +116,8 @@ public abstract class GLWallpaperService extends WallpaperService {
                     if (changed && w > 0 && h > 0) renderer.onSurfaceChanged(gl, w, h);
                     long start = System.nanoTime();
                     renderer.onDrawFrame(gl);
-                    if (!egl.eglSwapBuffers(display, eglSurface)) { destroySurface(); sleep(100); continue; }
-                    sleep(FRAME_MILLIS - (System.nanoTime() - start) / 1000000L);
+                    if (!egl.eglSwapBuffers(display, eglSurface)) { destroySurface(); pause(100); continue; }
+                    pause(FRAME_MILLIS - (System.nanoTime() - start) / 1000000L);
                 }
             } finally {
                 destroySurface();
@@ -128,7 +128,7 @@ public abstract class GLWallpaperService extends WallpaperService {
             }
         }
 
-        private static void sleep(long ms) {
+        private static void pause(long ms) {
             if (ms <= 0) return;
             try { Thread.sleep(ms); } catch (InterruptedException ignored) { }
         }
