@@ -28,3 +28,12 @@ A simulated football match shown as a live TV broadcast. `mockup.html` is the re
 - Only the newest instance animates (`generation` / `liveInstances` gating); `adoptWindowSizeIfNeeded`; fresh `configureSheet` window per request; `cacheDisplay(in:to:)` returns a CPU-rendered still; lifecycle to the unified log.
 - Keep the score bug below the menu-bar/notch band (`max(safeAreaInsets.top, NSStatusBar.system.thickness)`) on full-screen instances.
 - Test reactivation with real lock/unlock cycles before claiming stability.
+
+## Android port (`android/`, live wallpaper, minSdk/targetSdk 13 = Android 3.2)
+- Java, no AndroidX. OpenGL ES 2.0 on its own EGL thread (`GLWallpaperService`, adapted from iund/spreadpoint-clock-screensaver): Honeycomb has no hardware Canvas for wallpapers and software perspective blits are far too slow. Window surface released while invisible, context kept.
+- `Broadcast` (GLSurfaceView.Renderer) is shared by `FootballWallpaperService` and `MainActivity` (full-screen preview + "Set as live wallpaper": chooser intent on API < 16).
+- Planes: one quad each with clip-space (x, y, 0, w) from the same camera maths → GPU perspective-correct texturing; POT textures (pitch 2048×1024, crowd 1024×256 / 512×256, replay crops 512×2048, board 1024×32 with GL_REPEAT) mipmapped. Sprites: one 1008×384 NPOT atlas per kit (21 frames × 4 looks at 2 px/unit). Same near-plane clamp (corners ≥ 4 m in front).
+- Painter's order, no depth buffer: planes → shadows → players/ball/goals far to near → HUD. Premultiplied alpha (ONE, ONE_MINUS_SRC_ALPHA).
+- Bitmaps built on background threads, uploaded and recycled on the GL thread (`largeHeap`: Honeycomb keeps bitmap pixels in the Java heap). A new GL context rebuilds everything.
+- API 13 limits: no `List.sort`/`Comparator.comparingDouble`/`String.join`/`Objects` (API 19–26); lambdas are fine (D8 desugars).
+- CI (`build-android`): builds the debug APK (`Football-<version>.apk`, attached to releases), runs it on an API 24 emulator, screenshots `MainActivity` and the live-wallpaper preview (the real engine) to the `ci-snapshots-android` branch, fails on `FATAL EXCEPTION`.

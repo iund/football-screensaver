@@ -113,8 +113,10 @@ final class Hud {
         }
         lowerE += ((m.bannerOn ? 1 : 0) - lowerE) * (1 - Math.exp(-dt * 8));
         if (lowerE > 0.002) {
-            float lx = 0.03f * W - 1.3f * lowerW * (float) (1 - lowerE), ly = 0.91f * H - lowerH;
-            g.image(texLower, lx, ly, lx + lowerW, ly + lowerH, 1);
+            // Narrow (portrait) screens: shrink to fit 94% of the width, as the mockup's max-width does.
+            float k = Math.min(1, 0.94f * W / lowerW), lw = lowerW * k, lh = lowerH * k;
+            float lx = 0.03f * W - 1.3f * lw * (float) (1 - lowerE), ly = 0.91f * H - lh;
+            g.image(texLower, lx, ly, lx + lw, ly + lh, 1);
         }
 
         String ck = m.cardTitle + t0.def.name + t1.def.name + t0.score + "|" + t1.score + size;
